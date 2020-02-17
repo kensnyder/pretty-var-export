@@ -6,24 +6,6 @@ function prettyVarExport(value) {
 	return walk(value, 0);
 
 	function walk(value, level) {
-		if (Array.isArray(value)) {
-			if (seen.includes(value)) {
-				return indent(level) + format.circularArray();
-			}
-			if (value.length === 0) {
-				return format.wrapSymbol('[]');
-			}
-			seen.push(value);
-			return [
-				format.wrapSymbol('['),
-				'\n',
-				indent(level + 2),
-				value.map(v => walk(v, level + 1)).join(',\n' + indent(level + 2)),
-				'\n',
-				indent(level + 1),
-				format.wrapSymbol(']'),
-			].join('');
-		}
 		if (value === null) {
 			return format.null();
 		}
@@ -48,6 +30,24 @@ function prettyVarExport(value) {
 		if (typeof value === 'symbol') {
 			return format.symbol(value);
 		}
+		if (Array.isArray(value)) {
+			if (seen.includes(value)) {
+				return indent(level) + format.circularArray();
+			}
+			if (value.length === 0) {
+				return format.wrapSymbol('[]');
+			}
+			seen.push(value);
+			return [
+				format.wrapSymbol('['),
+				'\n',
+				indent(level + 2),
+				value.map(v => walk(v, level + 1)).join(',\n' + indent(level + 2)),
+				'\n',
+				indent(level + 1),
+				format.wrapSymbol(']'),
+			].join('');
+		}
 		if (typeof value === 'object') {
 			if (seen.includes(value)) {
 				return format.circularObject();
@@ -62,19 +62,18 @@ function prettyVarExport(value) {
 					const val = value[prop];
 					return [
 						indent(level + 2),
-						format.prop(prop),
+						format.wrapProp(prop),
 						format.wrapSymbol(':'),
 						' ',
 						walk(val, level + 1),
-						format.wrapSymbol(','),
-						'\n',
 					].join('');
 				})
-				.join('');
+				.join(',\n' + indent(level + 1));
 			return [
 				format.wrapSymbol('{'),
 				'\n',
 				keyOutput,
+				'\n',
 				indent(level + 1),
 				format.wrapSymbol('}'),
 			].join('');

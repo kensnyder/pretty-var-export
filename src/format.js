@@ -13,7 +13,7 @@ const format = {
 		return format.wrapSymbol('`') + str + format.wrapSymbol('`');
 	},
 	null() {
-		return yellow('NULL');
+		return yellow('null');
 	},
 	date(date) {
 		return (
@@ -54,7 +54,7 @@ const format = {
 	bigint(int) {
 		return red(String(int) + 'n');
 	},
-	prop(str) {
+	wrapProp(str) {
 		return str.match(/^[a-z$_]+[\w_]*$/i)
 			? cyan(str)
 			: format.wrapQuote(cyan(str));
