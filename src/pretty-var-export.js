@@ -68,7 +68,7 @@ function prettyVarExport(value) {
 						walk(val, level + 1),
 					].join('');
 				})
-				.join(',\n' + indent(level + 1));
+				.join(',\n');
 			return [
 				format.wrapSymbol('{'),
 				'\n',
