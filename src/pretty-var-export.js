@@ -15,6 +15,9 @@ function prettyVarExport(value) {
 		if (value instanceof Date) {
 			return format.date(value);
 		}
+		if (value instanceof Error) {
+			return format.error(value);
+		}
 		if (value instanceof RegExp) {
 			return format.regexp(value);
 		}

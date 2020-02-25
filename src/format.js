@@ -84,13 +84,8 @@ const format = {
 			format.wrapSymbol('{') + gray(' /* Promise */ ') + format.wrapSymbol('}')
 		);
 	},
-	function(func) {
-		let src = String(func);
-		src = src.replace(
-			/^(function [^(]*\(\) \{ )\[native code\]( \})$/,
-			'$1/* native code */$2'
-		);
-		return blue(src);
+	function() {
+		return gray('function() { /* code omitted */ }');
 	},
 	error(err) {
 		return gray('new Error(') + format.string(err.message) + gray(')');

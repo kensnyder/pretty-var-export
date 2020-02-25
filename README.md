@@ -15,7 +15,7 @@ console.log(prettify(myValue));
 
 ## Example
 
-![Example](./demo/example.png?raw=true)
+![Example](./demo/example.png?raw=true&v=1.0.2)
 
 ## Contributing
 

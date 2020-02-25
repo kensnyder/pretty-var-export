@@ -16,17 +16,12 @@ const value = [
 			'4eight': 5 / 0,
 			'4) nine': NaN,
 			'four ten': -5 / 0,
-			_four11: 'file\nstays\r\nopen" `ok`?',
+			_four11: 'diner\nstays\r\nopen" `ok`?',
 			fourTwelve: 'say "hello"!',
 		},
 		six: Symbol('six'),
 		seven: BigInt(Number.MAX_SAFE_INTEGER) * 2n,
-		eight: function add(a, b) {
-			return a + b;
-		},
-		nine: (c, d) => c + d,
-		ten: parseFloat,
-		eleven: Math.max,
+		eight: new Error('foobar'),
 	},
 ];
 value[1] = value[0].four;
