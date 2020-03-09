@@ -3,95 +3,147 @@ const { gray, blue, yellow, red, cyan, green, white } = require('./colors.js');
 const zeropad = (num, len) => (new Array(len).join('0') + num).slice(-len);
 
 const format = {
-	wrapSymbol(str) {
-		return white(str);
+	colors: {
+		symbol: white,
+		null: yellow,
+		constructor: gray,
+		string: green,
+		regexp: blue,
+		number: red,
+		property: cyan,
+		boolean: yellow,
+		undefined: yellow,
+		nan: red,
+		comment: gray,
 	},
-	wrapQuote(str) {
-		return format.wrapSymbol('"') + str + format.wrapSymbol('"');
+	setColors(overrides) {
+		Object.assign(format.colors, overrides);
 	},
-	wrapBacktick(str) {
-		return format.wrapSymbol('`') + str + format.wrapSymbol('`');
+	comment(value) {
+		return format.colors.comment(value);
 	},
 	null() {
-		return yellow('null');
+		return format.colors.null('null');
+	},
+	undefined() {
+		return format.colors.undefined('undefined');
+	},
+	nan() {
+		return format.colors.nan('NaN');
+	},
+	boolean(bool) {
+		return format.colors.boolean(bool ? 'true' : 'false');
 	},
 	date(date) {
 		return (
-			gray('new Date("') +
-			blue(
-				[
-					date.getFullYear(),
-					'-',
-					zeropad(date.getMonth() + 1, 2),
-					'-',
-					zeropad(date.getDate(), 2),
-					'T',
-					zeropad(date.getHours(), 2),
-					':',
-					zeropad(date.getMinutes(), 2),
-					':',
-					zeropad(date.getSeconds(), 2),
-					'.',
-					zeropad(date.getMilliseconds(), 3),
-				].join('')
+			format.colors.constructor('new Date(') +
+			format.colors.symbol('"') +
+			format.colors.string(
+				date.getFullYear() +
+					'-' +
+					zeropad(date.getMonth() + 1, 2) +
+					'-' +
+					zeropad(date.getDate(), 2) +
+					'T' +
+					zeropad(date.getHours(), 2) +
+					':' +
+					zeropad(date.getMinutes(), 2) +
+					':' +
+					zeropad(date.getSeconds(), 2) +
+					'.' +
+					zeropad(date.getMilliseconds(), 3)
 			) +
-			gray('")')
+			format.colors.symbol('"') +
+			format.colors.constructor(')')
 		);
 	},
 	regexp(regex) {
-		return blue(String(regex));
+		if (!(regex instanceof RegExp)) {
+			return 'not regexp!';
+		}
+		const match = String(regex).match(/^\/(.+?)\/([a-z]*)$/);
+		return (
+			format.colors.symbol('/') +
+			format.colors.regexp(match[1]) +
+			format.colors.symbol('/') +
+			format.colors.string(match[2])
+		);
 	},
 	string(str) {
 		if (str.match(/[\r\n]/)) {
-			return format.wrapBacktick(green(str.replace(/`/g, '\\`')));
-		} else {
-			return format.wrapQuote(green(str.replace(/"/g, '\\"')));
+			// multi-line string
+			return (
+				format.colors.symbol('`') +
+				format.colors.string(str.replace(/`/g, '\\`')) +
+				format.colors.symbol('`')
+			);
 		}
+		// single-line string
+		return (
+			format.colors.symbol('"') +
+			format.colors.string(str.replace(/"/g, '\\"')) +
+			format.colors.symbol('"')
+		);
 	},
 	number(num) {
-		return red(num);
+		return format.colors.number(num);
 	},
 	bigint(int) {
-		return red(String(int) + 'n');
+		return format.colors.number(String(int) + 'n');
 	},
-	wrapProp(str) {
-		return str.match(/^[a-z$_]+[\w_]*$/i)
-			? cyan(str)
-			: format.wrapQuote(cyan(str));
-	},
-	boolean(bool) {
-		return yellow(bool ? 'true' : 'false');
-	},
-	undefined() {
-		return yellow('undefined');
+	property(str) {
+		if (str.match(/^[a-z$_]+[\w_]*$/i)) {
+			// no quotes needed
+			return format.colors.property(str);
+		}
+		// double quotes required
+		return (
+			format.colors.symbol('"') +
+			format.colors.property(str.replace(/"/g, '\\"')) +
+			format.colors.symbol('"')
+		);
 	},
 	circularArray() {
 		return (
-			format.wrapSymbol('[') +
-			gray(' /* Circular Reference */ ') +
-			format.wrapSymbol(']')
+			format.colors.symbol('[') +
+			format.colors.comment(' /* Circular Reference */ ') +
+			format.colors.symbol(']')
 		);
 	},
 	circularObject() {
 		return (
-			format.wrapSymbol('{') +
-			gray(' /* Circular Reference */ ') +
-			format.wrapSymbol('}')
+			format.colors.symbol('{') +
+			format.colors.comment(' /* Circular Reference */ ') +
+			format.colors.symbol('}')
 		);
 	},
 	promise() {
 		return (
-			format.wrapSymbol('{') + gray(' /* Promise */ ') + format.wrapSymbol('}')
+			format.colors.symbol('{') +
+			format.colors.comment(' /* Promise */ ') +
+			format.colors.symbol('}')
 		);
 	},
 	function() {
-		return gray('function() { /* code omitted */ }');
+		return format.colors.comment('function() { /* code omitted */ }');
 	},
 	error(err) {
-		return gray('new Error(') + format.string(err.message) + gray(')');
+		return (
+			format.colors.constructor('new Error(') +
+			format.colors.symbol('"') +
+			format.colors.string(err.message) +
+			format.colors.symbol('"') +
+			format.colors.constructor(')')
+		);
 	},
 	symbol(sym) {
-		return gray('Symbol(') + format.string(sym.description) + gray(')');
+		return (
+			format.colors.constructor('new Symbol(') +
+			format.colors.symbol('"') +
+			format.colors.string(sym.description) +
+			format.colors.symbol('"') +
+			format.colors.constructor(')')
+		);
 	},
 };
 

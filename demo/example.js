@@ -22,6 +22,15 @@ const value = [
 		six: Symbol('six'),
 		seven: BigInt(Number.MAX_SAFE_INTEGER) * 2n,
 		eight: new Error('foobar'),
+		nine: new URL('https://example.com/abc?d=4'),
+		ten: new URLSearchParams({ d: 4, e: 5 }),
+		eleven: new Set(['a', 'b']),
+		twelve: new Map([
+			['c', 3],
+			['d', 4],
+		]),
+		thirteen: new WeakSet(),
+		fourteen: new WeakMap(),
 	},
 ];
 value[1] = value[0].four;
@@ -32,4 +41,4 @@ value[4] = value[0].four.fourSix[1];
 value[5] = value[0].four.fourSix;
 
 console.log('example:');
-console.log(prettify(value));
+prettify.log(value, 2);
