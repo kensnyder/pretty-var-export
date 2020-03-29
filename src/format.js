@@ -3,19 +3,7 @@ const { gray, blue, yellow, red, cyan, green, white } = require('./colors.js');
 const zeropad = (num, len) => (new Array(len).join('0') + num).slice(-len);
 
 const format = {
-	colors: {
-		symbol: white,
-		null: yellow,
-		constructor: gray,
-		string: green,
-		regexp: blue,
-		number: red,
-		property: cyan,
-		boolean: yellow,
-		undefined: yellow,
-		nan: red,
-		comment: gray,
-	},
+	colors: {},
 	setColors(overrides) {
 		Object.assign(format.colors, overrides);
 	},

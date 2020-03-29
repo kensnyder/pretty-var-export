@@ -12,4 +12,12 @@ indent.setIndent = function(numOrCharacters) {
 	}
 };
 
+indent.removeAll = function(str) {
+	return str.replace(/\s+/g, '');
+};
+
+indent.toSpaces = function(str) {
+	return str.replace(/\s+/g, ' ');
+};
+
 module.exports = indent;
