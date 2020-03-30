@@ -1,6 +1,7 @@
 const format = require('./format.js');
 const indent = require('./indent.js');
-const handlers = require('./handlers.js');
+const handlers = require('./handlers/handlers.js');
+const options = require('./options/options.js');
 
 function prettyVarExport(value) {
 	const seen = new WeakSet();
@@ -38,5 +39,7 @@ prettyVarExport.setIndent = function setIndent(numOrCharacters) {
 	indent.setIndent(numOrCharacters);
 	return prettyVarExport;
 };
+
+prettyVarExport.options = options;
 
 module.exports = prettyVarExport;

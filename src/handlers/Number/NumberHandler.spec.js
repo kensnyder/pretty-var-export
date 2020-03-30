@@ -14,6 +14,30 @@ describe('NumberHandler.test()', () => {
 		const subject = 4e2;
 		expect(NumberHandler.test(subject)).toBe(true);
 	});
+	it('should recognize NaN', () => {
+		const subject = NaN;
+		expect(NumberHandler.test(subject)).toBe(true);
+	});
+	it('should recognize Infinity', () => {
+		const subject = Infinity;
+		expect(NumberHandler.test(subject)).toBe(true);
+	});
+	it('should recognize -Infinity', () => {
+		const subject = -Infinity;
+		expect(NumberHandler.test(subject)).toBe(true);
+	});
+	it('should recognize 0', () => {
+		const subject = 0;
+		expect(NumberHandler.test(subject)).toBe(true);
+	});
+	it('should recognize -0', () => {
+		const subject = -0;
+		expect(NumberHandler.test(subject)).toBe(true);
+	});
+	it('should handle number objects', () => {
+		const subject = new Number(42);
+		expect(NumberHandler.test(subject)).toBe(true);
+	});
 	it('should not recognize numeric strings', () => {
 		const subject = '42';
 		expect(NumberHandler.test(subject)).toBe(false);
