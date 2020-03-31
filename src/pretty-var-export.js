@@ -4,7 +4,7 @@ const handlers = require('./handlers/handlers.js');
 const options = require('./options/options.js');
 
 function prettyVarExport(value) {
-	const objectsSeen = new WeakSet();
+	const objectsSeen = new Set();
 	return walk(value, 0);
 	function walk(value, level) {
 		for (const handler of handlers) {
