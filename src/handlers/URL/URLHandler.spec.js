@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const URLHandler = require('./URLHandler.js');
 
 describe('URLHandler.test()', () => {

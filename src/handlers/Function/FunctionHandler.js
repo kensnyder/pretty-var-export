@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const options = require('../../options/options.js');
 
 const FunctionHandler = {
@@ -10,7 +10,7 @@ const FunctionHandler = {
 		return (
 			colors.constructor('function') +
 			colors.symbol('() {') +
-			colors.comment(' /* showFunctionBody: false */ ') +
+			colors.comment(' /* Code Omitted */ ') +
 			colors.symbol('}')
 		);
 	},

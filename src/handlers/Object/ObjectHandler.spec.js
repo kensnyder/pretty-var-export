@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const indent = require('../../indent.js');
 const ObjectHandler = require('./ObjectHandler.js');
 
@@ -17,19 +17,19 @@ describe('ObjectHandler.format()', () => {
 	const walk = v => v;
 	it('should output array with unquoted keys', () => {
 		const arr = { a: 1, $b: 2, _c: 3 };
-		const result = ObjectHandler.format(arr, 0, new Set(), indent, walk);
+		const result = ObjectHandler.format(arr, 0, false, indent, walk);
 		const formatted = indent.toSpaces(colors.uncolorize(result));
 		expect(formatted).toBe('{ a: 1, $b: 2, _c: 3 }');
 	});
 	it('should output array with quoted keys', () => {
 		const arr = { a: 1, 'b-2': 2, 'c 3': 3 };
-		const result = ObjectHandler.format(arr, 0, new Set(), indent, walk);
+		const result = ObjectHandler.format(arr, 0, false, indent, walk);
 		const formatted = indent.toSpaces(colors.uncolorize(result));
 		expect(formatted).toBe('{ a: 1, "b-2": 2, "c 3": 3 }');
 	});
 	it('should handle empty objects', () => {
 		const arr = [];
-		const result = ObjectHandler.format(arr, 0, new Set(), indent, walk);
+		const result = ObjectHandler.format(arr, 0, false, indent, walk);
 		const formatted = indent.toSpaces(colors.uncolorize(result));
 		expect(formatted).toBe('{}');
 	});

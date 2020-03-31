@@ -4,12 +4,18 @@ const handlers = require('./handlers/handlers.js');
 const options = require('./options/options.js');
 
 function prettyVarExport(value) {
-	const seen = new WeakSet();
+	const objectsSeen = new WeakSet();
 	return walk(value, 0);
 	function walk(value, level) {
 		for (const handler of handlers) {
 			if (handler.test(value)) {
-				return handler.format(value, level, seen, indent, walk);
+				if (typeof value === 'object') {
+					const seen = objectsSeen.has(value);
+					const output = handler.format(value, level, seen, indent, walk);
+					objectsSeen.add(value);
+					return output;
+				}
+				return handler.format(value, level, false, indent, walk);
 			}
 		}
 	}

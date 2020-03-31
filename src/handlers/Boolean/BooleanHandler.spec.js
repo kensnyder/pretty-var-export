@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const BooleanHandler = require('./BooleanHandler.js');
 
 describe('BooleanHandler.test()', () => {

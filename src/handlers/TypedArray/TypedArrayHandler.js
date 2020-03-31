@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const ArrayHandler = require('../Array/ArrayHandler.js');
 
 const TypedArrayHandler = {
@@ -19,7 +19,7 @@ const TypedArrayHandler = {
 	},
 	format: (value, level, seen, indent, walk) => {
 		const constructorName = value.constructor.name;
-		if (seen.has(value)) {
+		if (seen) {
 			return (
 				colors.constructor(`new ${constructorName}(`) +
 				colors.comment(' /* Circular Reference */ ') +

@@ -16,10 +16,10 @@ const handlers = [
 	require('./TypedArray/TypedArrayHandler.js'),
 	require('./WeakMap/WeakMapHandler.js'),
 	require('./Map/MapHandler.js'),
-	weaksetHandler,
-	setHandler,
+	require('./Set/SetHandler.js'),
+	require('./WeakSet/WeakSetHandler.js'),
 	require('./URL/URLHandler.js'),
-	urlSearchParamsHandler,
+	require('./URLSearchParams/URLSearchParamsHandler.js'),
 	require('./Object/ObjectHandler.js'),
 ];
 

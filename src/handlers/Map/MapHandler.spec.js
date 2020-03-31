@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const indent = require('../../indent.js');
 const MapHandler = require('./MapHandler.js');
 
@@ -29,13 +29,13 @@ describe('MapHandler.format()', () => {
 			['b', 2],
 			['c', 3],
 		]);
-		const result = MapHandler.format(map, 0, new Set(), indent, walk);
+		const result = MapHandler.format(map, 0, false, indent, walk);
 		const formatted = indent.toSpaces(colors.uncolorize(result));
 		expect(formatted).toBe("new Map([ ['a', 1], ['b', 2], ['c', 3] ])");
 	});
 	it('should handle empty maps', () => {
 		const map = new Map();
-		const result = MapHandler.format(map, 0, new Set(), indent, walk);
+		const result = MapHandler.format(map, 0, false, indent, walk);
 		const formatted = indent.toSpaces(colors.uncolorize(result));
 		expect(formatted).toBe('new Map([ ])');
 	});

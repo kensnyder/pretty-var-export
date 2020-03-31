@@ -1,6 +1,8 @@
-const values = {
+const defaults = {
 	showFunctionBody: false,
 };
+
+const values = { ...defaults };
 
 const options = {
 	set: function(name, value) {
@@ -16,6 +18,10 @@ const options = {
 			return values[name];
 		}
 		return { ...values };
+	},
+	reset: function() {
+		Object.assign(values, defaults);
+		return options;
 	},
 };
 

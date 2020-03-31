@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 
 const StringHandler = {
 	test: value => typeof value === 'string' || value instanceof String,

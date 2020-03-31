@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const indent = require('../../indent.js');
 const TypedArrayHandler = require('./TypedArrayHandler.js');
 
@@ -60,13 +60,13 @@ describe('TypedArrayHandler.format() BigInt & BigUint', () => {
 	constructors.big.forEach(constructor => {
 		it(`should output with numbers for ${constructor.name}`, () => {
 			const arr = new constructor([1n, 2n, 3n]);
-			const result = TypedArrayHandler.format(arr, 0, new Set(), indent, walk);
+			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.toSpaces(colors.uncolorize(result));
 			expect(formatted).toBe(`new ${constructor.name}([ 1n, 2n, 3n ])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
-			const result = TypedArrayHandler.format(arr, 0, new Set(), indent, walk);
+			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.toSpaces(colors.uncolorize(result));
 			expect(formatted).toBe(`new ${constructor.name}([])`);
 		});
@@ -92,13 +92,13 @@ describe('TypedArrayHandler.format() Int & Uint', () => {
 	constructors.int.forEach(constructor => {
 		it(`should output with numbers for ${constructor.name}`, () => {
 			const arr = new constructor([1, 2, 3]);
-			const result = TypedArrayHandler.format(arr, 0, new Set(), indent, walk);
+			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.toSpaces(colors.uncolorize(result));
 			expect(formatted).toBe(`new ${constructor.name}([ 1, 2, 3 ])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
-			const result = TypedArrayHandler.format(arr, 0, new Set(), indent, walk);
+			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.toSpaces(colors.uncolorize(result));
 			expect(formatted).toBe(`new ${constructor.name}([])`);
 		});
@@ -124,13 +124,13 @@ describe('TypedArrayHandler.format() Float', () => {
 	constructors.float.forEach(constructor => {
 		it(`should output with numbers for ${constructor.name}`, () => {
 			const arr = new constructor([1.5, 2.5, 3.5]);
-			const result = TypedArrayHandler.format(arr, 0, new Set(), indent, walk);
+			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.toSpaces(colors.uncolorize(result));
 			expect(formatted).toBe(`new ${constructor.name}([ 1.5, 2.5, 3.5 ])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
-			const result = TypedArrayHandler.format(arr, 0, new Set(), indent, walk);
+			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.toSpaces(colors.uncolorize(result));
 			expect(formatted).toBe(`new ${constructor.name}([])`);
 		});

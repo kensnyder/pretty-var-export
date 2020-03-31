@@ -1,9 +1,9 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 
 const ObjectHandler = {
 	test: value => typeof value === 'object',
 	format: (value, level, seen, indent, walk) => {
-		if (seen.has(value)) {
+		if (seen) {
 			return (
 				colors.symbol('{') +
 				colors.comment(' /* Circular Reference */ ') +
@@ -14,7 +14,6 @@ const ObjectHandler = {
 		if (keys.length === 0) {
 			return colors.symbol('{}');
 		}
-		seen.add(value);
 		return (
 			colors.symbol('{') +
 			'\n' +

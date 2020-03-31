@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 const indent = require('../../indent.js');
 const argumentsHandler = require('./argumentsHandler.js');
 
@@ -30,7 +30,7 @@ describe('argumentsHandler.format()', () => {
 		const args = (function(a, b, c) {
 			return arguments;
 		})(1, 2, 3);
-		const result = argumentsHandler.format(args, 0, new Set(), indent, v => v);
+		const result = argumentsHandler.format(args, 0, false, indent, v => v);
 		const formatted = indent.removeAll(colors.uncolorize(result));
 		expect(formatted).toBe('[1,2,3]');
 	});
@@ -38,7 +38,7 @@ describe('argumentsHandler.format()', () => {
 		const args = (function() {
 			return arguments;
 		})();
-		const result = argumentsHandler.format(args, 0, new Set(), indent, v => v);
+		const result = argumentsHandler.format(args, 0, false, indent, v => v);
 		const formatted = indent.removeAll(colors.uncolorize(result));
 		expect(formatted).toBe('[]');
 	});

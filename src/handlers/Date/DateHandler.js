@@ -1,4 +1,4 @@
-const colors = require('../../colors.js');
+const colors = require('../../colors/colors.js');
 
 const zeropad = (num, len) => (new Array(len).join('0') + num).slice(-len);
 

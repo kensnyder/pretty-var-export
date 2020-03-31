@@ -1,4 +1,12 @@
-const { gray, blue, yellow, red, cyan, green, white } = require('./colors.js');
+const {
+	gray,
+	blue,
+	yellow,
+	red,
+	cyan,
+	green,
+	white,
+} = require('./colors/colors.js');
 
 const zeropad = (num, len) => (new Array(len).join('0') + num).slice(-len);
 
