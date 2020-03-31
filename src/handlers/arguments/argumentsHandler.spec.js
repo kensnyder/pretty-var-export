@@ -1,5 +1,5 @@
 const colors = require('../../colors/colors.js');
-const indent = require('../../indent.js');
+const indent = require('../../indent/indent.js');
 const argumentsHandler = require('./argumentsHandler.js');
 
 describe('argumentsHandler.test()', () => {

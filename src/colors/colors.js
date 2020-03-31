@@ -22,16 +22,21 @@ const types = {
 	comment: codes.gray,
 };
 
+const colors = {
+	uncolorize(str) {
+		return str.replace(/\x1b\[[0-9;]*m/g, '');
+	},
+};
+
+// add all color functions
 for (const name in types) {
 	if (!types.hasOwnProperty(name)) {
 		continue;
 	}
 	const open = types[name];
-	module.exports[name] = function(value) {
+	colors[name] = function(value) {
 		return `\u001B[${open}m${value}\u001B[39m`;
 	};
 }
 
-module.exports.uncolorize = function(str) {
-	return str.replace(/\x1b\[[0-9;]*m/g, '');
-};
+module.exports = colors;

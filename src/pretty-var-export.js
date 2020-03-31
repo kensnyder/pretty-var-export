@@ -1,5 +1,5 @@
-const format = require('./format.js');
-const indent = require('./indent.js');
+const colors = require('./colors/colors.js');
+const indent = require('./indent/indent.js');
 const handlers = require('./handlers/handlers.js');
 const options = require('./options/options.js');
 
@@ -36,15 +36,9 @@ prettyVarExport.addHandler = function addHandler(spec) {
 	return prettyVarExport;
 };
 
-prettyVarExport.setColors = function setColors(overrides) {
-	format.setColors(overrides);
-	return prettyVarExport;
-};
+prettyVarExport.colors = colors;
 
-prettyVarExport.setIndent = function setIndent(numOrCharacters) {
-	indent.setIndent(numOrCharacters);
-	return prettyVarExport;
-};
+prettyVarExport.indent = indent;
 
 prettyVarExport.options = options;
 
