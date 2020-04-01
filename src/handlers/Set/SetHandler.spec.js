@@ -22,17 +22,17 @@ describe('SetHandler.test()', () => {
 });
 
 describe('SetHandler.format()', () => {
-	const walk = v => v;
+	const walk = JSON.stringify;
 	it('should output array with numbers', () => {
 		const set = [1, 2, 3];
 		const result = SetHandler.format(set, 0, false, indent, walk);
-		const formatted = indent.removeAll(colors.uncolorize(result));
+		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('newSet([1,2,3])');
 	});
 	it('should handle empty arrays', () => {
 		const set = new Set([]);
 		const result = SetHandler.format(set, 0, false, indent, walk);
-		const formatted = indent.removeAll(colors.uncolorize(result));
+		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('newSet([])');
 	});
 });

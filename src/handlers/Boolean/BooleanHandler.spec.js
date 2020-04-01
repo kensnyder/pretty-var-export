@@ -23,22 +23,22 @@ describe('BooleanHandler.test()', () => {
 describe('BooleanHandler.format()', () => {
 	it('should output true', () => {
 		const bool = true;
-		const formatted = colors.uncolorize(BooleanHandler.format(bool));
+		const formatted = colors.unstyle(BooleanHandler.format(bool));
 		expect(formatted).toBe('true');
 	});
 	it('should output false', () => {
 		const bool = false;
-		const formatted = colors.uncolorize(BooleanHandler.format(bool));
+		const formatted = colors.unstyle(BooleanHandler.format(bool));
 		expect(formatted).toBe('false');
 	});
 	it('should output Boolean object true', () => {
 		const bool = new Boolean(true);
-		const formatted = colors.uncolorize(BooleanHandler.format(bool));
+		const formatted = colors.unstyle(BooleanHandler.format(bool));
 		expect(formatted).toBe('true');
 	});
 	it('should output Boolean object false', () => {
 		const bool = new Boolean(false);
-		const formatted = colors.uncolorize(BooleanHandler.format(bool));
+		const formatted = colors.unstyle(BooleanHandler.format(bool));
 		expect(formatted).toBe('false');
 	});
 });

@@ -47,12 +47,12 @@ describe('NumberHandler.test()', () => {
 describe('NumberHandler.format()', () => {
 	it('should output integers', () => {
 		const number = 42;
-		const formatted = colors.uncolorize(NumberHandler.format(number));
+		const formatted = colors.unstyle(NumberHandler.format(number));
 		expect(formatted).toBe('42');
 	});
 	it('should output floats', () => {
 		const number = 42.5;
-		const formatted = colors.uncolorize(NumberHandler.format(number));
+		const formatted = colors.unstyle(NumberHandler.format(number));
 		expect(formatted).toBe('42.5');
 	});
 });

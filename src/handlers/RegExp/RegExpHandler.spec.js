@@ -15,12 +15,12 @@ describe('RegExpHandler.test()', () => {
 describe('RegExpHandler.format()', () => {
 	it('should output RegExp literal', () => {
 		const date = /abc/;
-		const formatted = colors.uncolorize(RegExpHandler.format(date));
+		const formatted = colors.unstyle(RegExpHandler.format(date));
 		expect(formatted).toBe('/abc/');
 	});
 	it('should output RegExp literal with flags', () => {
 		const date = /abc/gi;
-		const formatted = colors.uncolorize(RegExpHandler.format(date));
+		const formatted = colors.unstyle(RegExpHandler.format(date));
 		expect(formatted).toBe('/abc/gi');
 	});
 });

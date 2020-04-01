@@ -15,22 +15,22 @@ describe('SymbolHandler.test()', () => {
 describe('SymbolHandler.format()', () => {
 	it('should output double quotes', () => {
 		const symbol = Symbol('a');
-		const formatted = colors.uncolorize(SymbolHandler.format(symbol));
+		const formatted = colors.unstyle(SymbolHandler.format(symbol));
 		expect(formatted).toBe('Symbol("a")');
 	});
 	it('should handle undefined description', () => {
 		const symbol = Symbol();
-		const formatted = colors.uncolorize(SymbolHandler.format(symbol));
+		const formatted = colors.unstyle(SymbolHandler.format(symbol));
 		expect(formatted).toBe('Symbol()');
 	});
 	it('should output backticks on newline', () => {
 		const symbol = Symbol('abc\ndef');
-		const formatted = colors.uncolorize(SymbolHandler.format(symbol));
+		const formatted = colors.unstyle(SymbolHandler.format(symbol));
 		expect(formatted).toBe('Symbol(`abc\ndef`)');
 	});
 	it('should output backticks on carriage return', () => {
 		const symbol = Symbol('abc\rdef');
-		const formatted = colors.uncolorize(SymbolHandler.format(symbol));
+		const formatted = colors.unstyle(SymbolHandler.format(symbol));
 		expect(formatted).toBe('Symbol(`abc\rdef`)');
 	});
 });

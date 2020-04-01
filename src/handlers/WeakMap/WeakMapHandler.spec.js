@@ -21,7 +21,7 @@ describe('WeakMapHandler.format()', () => {
 		const map = new WeakMap();
 		map.set({}, 'a');
 		const result = WeakMapHandler.format(map);
-		const formatted = colors.uncolorize(result);
+		const formatted = colors.unstyle(result);
 		expect(formatted).toBe('new WeakMap( /* Items Unknown */ )');
 	});
 });

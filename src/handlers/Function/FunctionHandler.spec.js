@@ -3,7 +3,7 @@ const FunctionHandler = require('./FunctionHandler.js');
 
 describe('FunctionHandler.test()', () => {
 	it('should recognize function literals', () => {
-		const subject = function() {};
+		const subject = function () {};
 		expect(FunctionHandler.test(subject)).toBe(true);
 	});
 	it('should recognize arrow function literals', () => {
@@ -22,13 +22,13 @@ describe('FunctionHandler.test()', () => {
 
 describe('FunctionHandler.format()', () => {
 	it('should handle function with no body', () => {
-		const fn = function() {};
-		const formatted = colors.uncolorize(FunctionHandler.format(fn));
+		const fn = function () {};
+		const formatted = colors.unstyle(FunctionHandler.format(fn));
 		expect(formatted).toBe('function() { /* Code Omitted */ }');
 	});
 	it('should handle built-in function', () => {
 		const fn = parseInt;
-		const formatted = colors.uncolorize(FunctionHandler.format(fn));
+		const formatted = colors.unstyle(FunctionHandler.format(fn));
 		expect(formatted).toBe('function() { /* Code Omitted */ }');
 	});
 });

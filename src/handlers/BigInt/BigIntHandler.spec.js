@@ -15,7 +15,7 @@ describe('BigIntHandler.test()', () => {
 describe('BigIntHandler.format()', () => {
 	it('should output integers', () => {
 		const number = 42n;
-		const formatted = colors.uncolorize(BigIntHandler.format(number));
+		const formatted = colors.unstyle(BigIntHandler.format(number));
 		expect(formatted).toBe('42n');
 	});
 });

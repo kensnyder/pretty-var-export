@@ -12,9 +12,7 @@ const SetHandler = {
 		}
 		return (
 			colors.constructor('new Set(') +
-			colors.symbol('[\n') +
-			walk(Array.from(value), level + 1, seen, indent, walk) +
-			colors.symbol('\n]') +
+			walk(Array.from(value), level, seen, indent, walk) +
 			colors.constructor(')')
 		);
 	},

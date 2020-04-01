@@ -22,7 +22,7 @@ describe('undefinedHandler.test()', () => {
 
 describe('undefinedHandler.format()', () => {
 	it('should output undefined', () => {
-		const formatted = colors.uncolorize(undefinedHandler.format());
+		const formatted = colors.unstyle(undefinedHandler.format());
 		expect(formatted).toBe('undefined');
 	});
 });

@@ -29,7 +29,7 @@ describe('WeakSetHandler.format()', () => {
 	it('should output Items Unknown', () => {
 		const set = new WeakSet();
 		const result = WeakSetHandler.format(set);
-		const formatted = indent.removeAll(colors.uncolorize(result));
+		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('newWeakSet(/*ItemsUnknown*/)');
 	});
 });

@@ -15,22 +15,22 @@ describe('ErrorHandler.test()', () => {
 describe('ErrorHandler.format()', () => {
 	it('should output double quotes', () => {
 		const err = new Error('abc');
-		const formatted = colors.uncolorize(ErrorHandler.format(err));
+		const formatted = colors.unstyle(ErrorHandler.format(err));
 		expect(formatted).toBe('new Error("abc")');
 	});
 	it('should handle Errors with no message', () => {
 		const err = new Error();
-		const formatted = colors.uncolorize(ErrorHandler.format(err));
+		const formatted = colors.unstyle(ErrorHandler.format(err));
 		expect(formatted).toBe('new Error("")');
 	});
 	it('should output backticks on newline', () => {
 		const err = new Error('abc\ndef');
-		const formatted = colors.uncolorize(ErrorHandler.format(err));
+		const formatted = colors.unstyle(ErrorHandler.format(err));
 		expect(formatted).toBe('new Error(`abc\ndef`)');
 	});
 	it('should output backticks on carriage return', () => {
 		const err = new Error('abc\rdef');
-		const formatted = colors.uncolorize(ErrorHandler.format(err));
+		const formatted = colors.unstyle(ErrorHandler.format(err));
 		expect(formatted).toBe('new Error(`abc\rdef`)');
 	});
 });

@@ -18,7 +18,7 @@ describe('nullHandler.test()', () => {
 
 describe('nullHandler.format()', () => {
 	it('should output null', () => {
-		const formatted = colors.uncolorize(nullHandler.format());
+		const formatted = colors.unstyle(nullHandler.format());
 		expect(formatted).toBe('null');
 	});
 });

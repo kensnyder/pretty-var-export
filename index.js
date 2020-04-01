@@ -1,7 +1,7 @@
-const colors = require('./colors/colors.js');
-const indent = require('./indent/indent.js');
-const handlers = require('./handlers/handlers.js');
-const options = require('./options/options.js');
+const colors = require('./src/colors/colors.js');
+const indent = require('./src/indent/indent.js');
+const handlers = require('./src/handlers/handlers.js');
+const options = require('./src/options/options.js');
 
 function prettyVarExport(value) {
 	const objectsSeen = new Set();

@@ -1,44 +1,42 @@
-const prettify = require('../src/pretty-var-export.js');
+const prettify = require('../index.js');
 
-const value = [
-	{
-		one: 1,
-		two: '2',
-		three: /abcd/gi,
-		four: {
-			$fourOne: null,
-			fourTwo: false,
-			fourThree: true,
-			fourFour: [Promise.resolve(1), new Promise(() => {})],
-			fourFive: undefined,
-			fourSix: [1, new Date()],
-			'four-seven': 1.552,
-			'4eight': 5 / 0,
-			'4) nine': NaN,
-			'four ten': -5 / 0,
-			_four11: 'diner\nstays\r\nopen" `ok`?',
-			fourTwelve: 'say "hello"!',
-		},
-		six: Symbol('six'),
-		seven: BigInt(Number.MAX_SAFE_INTEGER) * 2n,
-		eight: new Error('foobar'),
-		nine: new URL('https://example.com/abc?d=4'),
-		ten: new URLSearchParams({ d: 4, e: 5 }),
-		eleven: new Set(['a', 'b']),
-		twelve: new Map([
-			['c', 3],
-			['d', 4],
-		]),
-		thirteen: new WeakSet(),
-		fourteen: new WeakMap(),
+const value = {
+	aNumber: 1,
+	aString: '2',
+	aRegExp: /abcd/gi,
+	anObject: {
+		aNull: null,
+		aBoolean: false,
+		aBoolean2: true,
+		twoPromises: [Promise.resolve(1), new Promise(() => {})],
+		anUndefined: undefined,
+		$anArray: [1, new Date()],
+		'a-float': 1.552,
+		'0Infinity': 5 / 0,
+		'a NaN': NaN,
+		'negative Infinity': -5 / 0,
+		_aMultilineString: 'diner\nstays\r\nopen" `ok`?',
+		aString: 'say "hello"!',
 	},
-];
-value[1] = value[0].four;
-value[2] = [];
-value[3] = {};
-value[0].five = value[0].four;
-value[4] = value[0].four.fourSix[1];
-value[5] = value[0].four.fourSix;
+	aSymbol: Symbol('six'),
+	aBigInt: BigInt(Number.MAX_SAFE_INTEGER) * 2n,
+	anError: new Error('foobar'),
+	aURL: new URL('https://example.com/abc?d=4'),
+	aURLSearchParams: new URLSearchParams({ d: 4, e: 5 }),
+	aSet: new Set(['a', 'b']),
+	aMap: new Map([
+		['c', 3],
+		['d', 4],
+	]),
+	aWeakSet: new WeakSet(),
+	aWeakMap: new WeakMap(),
+	anEmptyArray: [],
+	anEmptyObject: {},
+	aBuffer: Buffer.from([42, 422, 4222, 4242, 42424]),
+};
+value.aCircularArray = value.anObject.$anArray;
+value.aCircularObject = value.anEmptyObject;
+value.aCircularSet = value.aSet;
 
 console.log('example:');
-prettify.log(value, 2);
+prettify.log(value);

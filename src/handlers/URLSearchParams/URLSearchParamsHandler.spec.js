@@ -20,7 +20,7 @@ describe('URLSearchParamsHandler.format()', () => {
 	it('should output params', () => {
 		const params = new URLSearchParams({ a: 1, b: 2 });
 		const result = URLSearchParamsHandler.format(params);
-		const formatted = colors.uncolorize(result);
+		const formatted = colors.unstyle(result);
 		expect(formatted).toBe('new URLSearchParams("a=1&b=2")');
 	});
 });

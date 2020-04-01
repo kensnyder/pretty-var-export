@@ -2,9 +2,11 @@
   "name": "pretty-var-export",
   "version": "1.0.2",
   "description": "Export any value to valid and equivalent JavaScript code",
-  "main": "src/pretty-var-export.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx jest",
+    "test-watch": "npx jest --watch",
+    "demo": "node demo/example.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,10 @@
   },
   "homepage": "https://github.com/kensnyder/pretty-var-export#readme",
   "devDependencies": {
-    "jest": "^25.1.0",
-    "prettier": "^1.19.1"
+    "jest": "^25.2.4",
+    "prettier": "^2.0.2"
+  },
+  "dependencies": {
+    "ansi-colors": "^4.1.1"
   }
 }

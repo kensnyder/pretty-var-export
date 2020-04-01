@@ -15,7 +15,7 @@ describe('URLHandler.test()', () => {
 describe('URLHandler.format()', () => {
 	it('should output full href', () => {
 		const url = new URL('https://example.com/a');
-		const result = colors.uncolorize(URLHandler.format(url));
+		const result = colors.unstyle(URLHandler.format(url));
 		expect(result).toBe("new URL('https://example.com/a')");
 	});
 });

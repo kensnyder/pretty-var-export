@@ -1,9 +1,9 @@
 const colors = require('../../colors/colors.js');
-const ArrayHandler = require('../Array/ArrayHandler.js');
 
 const TypedArrayHandler = {
 	test: value => {
 		return (
+			value instanceof Buffer ||
 			value instanceof BigInt64Array ||
 			value instanceof BigUint64Array ||
 			value instanceof Int8Array ||
@@ -17,19 +17,31 @@ const TypedArrayHandler = {
 			value instanceof Float64Array
 		);
 	},
-	format: (value, level, seen, indent, walk) => {
+	format: (value, level, seen) => {
 		const constructorName = value.constructor.name;
+		const isBuffer = value instanceof Buffer;
+		const construct = isBuffer ? 'Buffer.from(' : `new ${constructorName}(`;
 		if (seen) {
 			return (
-				colors.constructor(`new ${constructorName}(`) +
+				colors.constructor(construct) +
+				colors.symbol('[') +
 				colors.comment(' /* Circular Reference */ ') +
+				colors.symbol(']') +
 				colors.constructor(')')
 			);
 		}
+		let mapper;
+		if (value instanceof BigInt64Array || value instanceof BigUint64Array) {
+			mapper = v => colors.number(v + 'n');
+		} else {
+			mapper = colors.number;
+		}
 		value = Array.from(value);
 		return (
-			colors.constructor(`new ${constructorName}(`) +
-			ArrayHandler.format(value, level + 1, seen, indent, walk) +
+			colors.constructor(construct) +
+			colors.symbol('[ ') +
+			value.map(mapper).join(colors.symbol(', ')) +
+			colors.symbol(' ]') +
 			colors.constructor(')')
 		);
 	},

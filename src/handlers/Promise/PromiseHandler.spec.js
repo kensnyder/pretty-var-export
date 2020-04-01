@@ -19,7 +19,7 @@ describe('PromiseHandler.test()', () => {
 describe('PromiseHandler.format()', () => {
 	it('should output new Date()', () => {
 		const date = Promise.resolve(42);
-		const formatted = colors.uncolorize(PromiseHandler.format(date));
+		const formatted = colors.unstyle(PromiseHandler.format(date));
 		expect(formatted).toBe('new Promise(() => {})');
 	});
 });

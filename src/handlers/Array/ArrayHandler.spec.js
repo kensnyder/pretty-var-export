@@ -12,7 +12,7 @@ describe('ArrayHandler.test()', () => {
 		expect(ArrayHandler.test(subject)).toBe(true);
 	});
 	it('should not confuse with arguments', () => {
-		const subject = (function(a, b) {
+		const subject = (function (a, b) {
 			return arguments;
 		})(1, 2);
 		expect(ArrayHandler.test(subject)).toBe(false);
@@ -28,13 +28,13 @@ describe('ArrayHandler.format()', () => {
 	it('should output array with numbers', () => {
 		const arr = [1, 2, 3];
 		const result = ArrayHandler.format(arr, 0, false, indent, walk);
-		const formatted = indent.removeAll(colors.uncolorize(result));
+		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('[1,2,3]');
 	});
 	it('should handle empty arrays', () => {
 		const arr = [];
 		const result = ArrayHandler.format(arr, 0, false, indent, walk);
-		const formatted = indent.removeAll(colors.uncolorize(result));
+		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('[]');
 	});
 });

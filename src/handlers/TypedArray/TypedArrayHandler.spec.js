@@ -61,14 +61,14 @@ describe('TypedArrayHandler.format() BigInt & BigUint', () => {
 		it(`should output with numbers for ${constructor.name}`, () => {
 			const arr = new constructor([1n, 2n, 3n]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(`new ${constructor.name}([ 1n, 2n, 3n ])`);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([1n,2n,3n])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(`new ${constructor.name}([])`);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([])`);
 		});
 		it('should handle circular references', () => {
 			const arr = new constructor([]);
@@ -79,28 +79,26 @@ describe('TypedArrayHandler.format() BigInt & BigUint', () => {
 				indent,
 				walk
 			);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(
-				`new ${constructor.name}( /* Circular Reference */ )`
-			);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([/*CircularReference*/])`);
 		});
 	});
 });
 
 describe('TypedArrayHandler.format() Int & Uint', () => {
-	const walk = v => v;
+	const walk = JSON.stringify;
 	constructors.int.forEach(constructor => {
 		it(`should output with numbers for ${constructor.name}`, () => {
 			const arr = new constructor([1, 2, 3]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(`new ${constructor.name}([ 1, 2, 3 ])`);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([1,2,3])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(`new ${constructor.name}([])`);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([])`);
 		});
 		it('should handle circular references', () => {
 			const arr = new constructor([]);
@@ -111,28 +109,26 @@ describe('TypedArrayHandler.format() Int & Uint', () => {
 				indent,
 				walk
 			);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(
-				`new ${constructor.name}( /* Circular Reference */ )`
-			);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([/*CircularReference*/])`);
 		});
 	});
 });
 
 describe('TypedArrayHandler.format() Float', () => {
-	const walk = v => v;
+	const walk = JSON.stringify;
 	constructors.float.forEach(constructor => {
 		it(`should output with numbers for ${constructor.name}`, () => {
 			const arr = new constructor([1.5, 2.5, 3.5]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(`new ${constructor.name}([ 1.5, 2.5, 3.5 ])`);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([1.5,2.5,3.5])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(`new ${constructor.name}([])`);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([])`);
 		});
 		it('should handle circular references', () => {
 			const arr = new constructor([]);
@@ -143,10 +139,8 @@ describe('TypedArrayHandler.format() Float', () => {
 				indent,
 				walk
 			);
-			const formatted = indent.toSpaces(colors.uncolorize(result));
-			expect(formatted).toBe(
-				`new ${constructor.name}( /* Circular Reference */ )`
-			);
+			const formatted = indent.removeAll(colors.unstyle(result));
+			expect(formatted).toBe(`new${constructor.name}([/*CircularReference*/])`);
 		});
 	});
 });

@@ -15,12 +15,12 @@ describe('DateHandler.test()', () => {
 describe('DateHandler.format()', () => {
 	it('should output new Date()', () => {
 		const date = new Date('2020-06-07T08:09:10.112');
-		const formatted = colors.uncolorize(DateHandler.format(date));
+		const formatted = colors.unstyle(DateHandler.format(date));
 		expect(formatted).toBe('new Date("2020-06-07T08:09:10.112")');
 	});
 	it('should handle invalid dates', () => {
 		const date = new Date('abc');
-		const formatted = colors.uncolorize(DateHandler.format(date));
+		const formatted = colors.unstyle(DateHandler.format(date));
 		expect(formatted).toBe('new Date("Invalid Date")');
 	});
 });
