@@ -8,7 +8,7 @@ function prettyVarExport(value) {
 	const objectsSeen = new Set();
 	return walk(value, 0);
 	function walk(value, level) {
-		for (const handler of handlers) {
+		for (const handler of handlers.list()) {
 			if (handler.test(value)) {
 				if (typeof value === 'object') {
 					const seen = objectsSeen.has(value);
@@ -32,12 +32,9 @@ prettyVarExport.log = function log(...args) {
 	});
 };
 
-prettyVarExport.addHandler = function addHandler(spec) {
-	handlers.unshift(spec);
-	return prettyVarExport;
-};
-
 prettyVarExport.colors = colors;
+
+prettyVarExport.handlers = handlers;
 
 prettyVarExport.indent = indent;
 

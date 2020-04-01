@@ -3,16 +3,16 @@ const Store = require('../Store/Store.js');
 
 const colors = new Store({
 	// colors
-	symbol: c.white,
-	null: c.yellow,
+	boolean: c.yellow,
+	comment: c.gray,
 	constructor: c.blue,
-	string: c.green,
-	regexp: c.blue,
+	null: c.yellow,
 	number: c.red,
 	property: c.cyan,
-	boolean: c.yellow,
+	regexp: c.blue,
+	string: c.green,
+	symbol: c.white,
 	undefined: c.yellow,
-	comment: c.gray,
 	// unit test
 	unstyle: c.unstyle,
 	// palette for more colors

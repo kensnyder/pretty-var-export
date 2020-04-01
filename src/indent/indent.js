@@ -1,10 +1,10 @@
-let characters = '    ';
+let characters = '  ';
 
 function indent(level) {
 	return new Array(level).join(characters);
 }
 
-indent.setIndent = function(numOrCharacters) {
+indent.set = function (numOrCharacters) {
 	if (typeof numOrCharacters === 'number') {
 		characters = new Array(numOrCharacters + 1).join(' ');
 	} else {
@@ -12,11 +12,11 @@ indent.setIndent = function(numOrCharacters) {
 	}
 };
 
-indent.removeAll = function(str) {
+indent.removeAll = function (str) {
 	return str.replace(/\s+/g, '');
 };
 
-indent.toSpaces = function(str) {
+indent.toSpaces = function (str) {
 	return str.replace(/\s+/g, ' ');
 };
 
