@@ -1,6 +1,7 @@
 const colors = require('./src/colors/colors.js');
-const indent = require('./src/indent/indent.js');
 const handlers = require('./src/handlers/handlers.js');
+const indent = require('./src/indent/indent.js');
+const labels = require('./src/labels/labels.js');
 const options = require('./src/options/options.js');
 
 function prettyVarExport(value) {
@@ -39,6 +40,8 @@ prettyVarExport.addHandler = function addHandler(spec) {
 prettyVarExport.colors = colors;
 
 prettyVarExport.indent = indent;
+
+prettyVarExport.options = labels;
 
 prettyVarExport.options = options;
 

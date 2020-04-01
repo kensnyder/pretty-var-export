@@ -1,5 +1,6 @@
 const colors = require('../../colors/colors.js');
 const options = require('../../options/options.js');
+const labels = require('../../labels/labels.js');
 
 const FunctionHandler = {
 	test: value => typeof value === 'function',
@@ -10,7 +11,7 @@ const FunctionHandler = {
 		return (
 			colors.constructor('function') +
 			colors.symbol('() {') +
-			colors.comment(' /* Code Omitted */ ') +
+			colors.comment(` /* ${labels.codeOmitted} */ `) +
 			colors.symbol('}')
 		);
 	},

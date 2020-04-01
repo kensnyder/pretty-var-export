@@ -1,4 +1,5 @@
 const colors = require('../../colors/colors.js');
+const labels = require('../../labels/labels.js');
 
 const SetHandler = {
 	test: value => value instanceof Set,
@@ -6,7 +7,7 @@ const SetHandler = {
 		if (seen) {
 			return (
 				colors.constructor('new Set(') +
-				colors.comment(' /* Circular Reference */ ') +
+				colors.comment(` /* ${labels.circularReference} */ `) +
 				colors.constructor(')')
 			);
 		}

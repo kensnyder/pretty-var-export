@@ -1,4 +1,5 @@
 const colors = require('../../colors/colors.js');
+const labels = require('../../labels/labels.js');
 
 const ArrayHandler = {
 	test: Array.isArray,
@@ -6,7 +7,7 @@ const ArrayHandler = {
 		if (seen) {
 			return (
 				colors.symbol('[') +
-				colors.comment(' /* Circular Reference */ ') +
+				colors.comment(` /* ${labels.circularReference} */ `) +
 				colors.symbol(']')
 			);
 		}

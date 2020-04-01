@@ -1,4 +1,5 @@
 const colors = require('../../colors/colors.js');
+const labels = require('../../labels/labels.js');
 
 const TypedArrayHandler = {
 	test: value => {
@@ -25,7 +26,7 @@ const TypedArrayHandler = {
 			return (
 				colors.constructor(construct) +
 				colors.symbol('[') +
-				colors.comment(' /* Circular Reference */ ') +
+				colors.comment(` /* ${labels.circularReference} */ `) +
 				colors.symbol(']') +
 				colors.constructor(')')
 			);
