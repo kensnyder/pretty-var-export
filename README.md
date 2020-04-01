@@ -1,6 +1,7 @@
 # pretty-var-export
 
-Export any value to valid and equivalent JavaScript code.
+Export any value to valid and equivalent JavaScript code. Uses syntax coloring
+for debugging from the cli.
 
 ```bash
 npm install pretty-var-export
@@ -119,7 +120,10 @@ prettify.colors.symbol = prettify.colors.palette.blueBright;
 // use any other function
 prettify.colors.string = chalk.green;
 
-// reset to defaults
+// disable all coloring
+prettify.colors.disable();
+
+// reset to default colors and re-enable coloring
 prettify.colors.reset();
 ```
 

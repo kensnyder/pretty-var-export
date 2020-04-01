@@ -13,10 +13,17 @@ const colors = new Store({
 	string: c.green,
 	symbol: c.white,
 	undefined: c.yellow,
-	// unit test
-	unstyle: c.unstyle,
 	// palette for more colors
 	palette: c,
+	// utility functions
+	unstyle: c.unstyle,
+	disable: function () {
+		const functions =
+			'boolean comment constructor null number property regexp string symbol undefined';
+		functions.split(' ').forEach(name => {
+			this[name] = v => v;
+		});
+	},
 });
 
 module.exports = colors;

@@ -61,8 +61,8 @@ const handlers = {
 		list = [...defaultList];
 		return this;
 	},
-	list() {
-		return list;
+	list: function () {
+		return list.map(item => item.handler);
 	},
 };
 
