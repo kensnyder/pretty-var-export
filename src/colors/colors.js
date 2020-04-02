@@ -6,6 +6,7 @@ const colors = new Store({
 	boolean: c.yellow,
 	comment: c.gray,
 	constructor: c.blue,
+	escape: c.yellowBright,
 	null: c.yellow,
 	number: c.red,
 	property: c.cyan,

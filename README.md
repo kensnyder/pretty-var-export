@@ -10,13 +10,13 @@ npm install pretty-var-export
 ## Usage
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
 
 // return string suitable for logging
-console.log(prettify(myValue));
+console.log(pretty(myValue));
 
-// prettify and log
-prettify.log(myValue);
+// pretty and log
+pretty.log(myValue);
 ```
 
 ## Example
@@ -32,16 +32,16 @@ Add custom handlers for formatting.
 For example, show NaN as a different color than numbers:
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
 
 // each handler must have a test and format method
-prettify.handlers.add('nan', {
+pretty.handlers.add('nan', {
     test: isNaN,
-    format: () => prettify.colors.palette.cyan('NaN'),
+    format: () => pretty.colors.palette.cyan('NaN'),
 });
 
 // reset to default list
-prettify.handlers.reset();
+pretty.handlers.reset();
 ```
 
 ### Remove handler
@@ -49,13 +49,13 @@ prettify.handlers.reset();
 You can remove handlers by name.
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
 
 // see below for list of names
-prettify.handlers.remove('nan');
+pretty.handlers.remove('nan');
 
 // reset to default list
-prettify.handlers.reset();
+pretty.handlers.reset();
 ```
 
 Default handler names:
@@ -87,44 +87,45 @@ Default handler names:
 By default, indentation is 2 spaces.
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
 
-prettify.indent.set(4); // 4 spaces
-prettify.indent.set('    '); // 4 spaces
-prettify.indent.set('\t'); // tab
+pretty.indent.set(4); // 4 spaces
+pretty.indent.set('    '); // 4 spaces
+pretty.indent.set('\t'); // tab
 
 // reset to default
-prettify.indent.reset();
+pretty.indent.reset();
 ```
 
 ### Custom colors
 
 Colors include the following:
-- `boolean` (default yellow)
-- `comment` (default gray)
-- `constructor` (default blue)
-- `null` (default yellow)
-- `number` (default red)
-- `property` (default cyan)
-- `regexp` (default blue)
-- `string` (default green)
-- `symbol` (default white)
-- `undefined` (default yellow)
+- `boolean` for true and false (default yellow)
+- `comment` for comments (default gray)
+- `constructor` for instantiation (default blue)
+- `escape` for string escapes (default yellowBright)
+- `null` for null (default yellow)
+- `number` for numbers, NaN, Infinity (default red)
+- `property` for object property names (default cyan)
+- `regexp` for bodies of regular expressions (default blue)
+- `string` for strings (default green)
+- `symbol` for quotes, braces, parens, commas, colons (default white)
+- `undefined` for undefined (default yellow)
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
 
 // existing color functions from the ansi-colors npm package
-prettify.colors.symbol = prettify.colors.palette.blueBright;
+pretty.colors.symbol = pretty.colors.palette.blueBright;
 
 // use any other function
-prettify.colors.string = chalk.green;
+pretty.colors.string = chalk.green;
 
 // disable all coloring
-prettify.colors.disable();
+pretty.colors.disable();
 
 // reset to default colors and re-enable coloring
-prettify.colors.reset();
+pretty.colors.reset();
 ```
 
 ## Custom display options
@@ -132,19 +133,22 @@ prettify.colors.reset();
 There are a few options that can change display.
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
  
 // if true, show function bodies (default=false)
-prettify.options.showFunctionBody = false;
+pretty.options.showFunctionBody = false;
 
 // the max length for strings (default=4096)
-prettify.options.maxStringLength = 1024 * 4;
+pretty.options.maxStringLength = 1024 * 4;
 
 // max number of items to list (default=100)
-prettify.options.maxArrayItems = 100;
+pretty.options.maxArrayItems = 100;
+
+// output multi-line strings with backticks (default=true)
+pretty.options.preferBackticks = true; 
  
 // reset to defaults
-prettify.options.reset();
+pretty.options.reset();
 ```
 
 ## Custom labels
@@ -152,15 +156,15 @@ prettify.options.reset();
 Labels can be changed or translated.
 
 ```js
-const prettify = require('pretty-var-export');
+const pretty = require('pretty-var-export');
 
 // defaults
-prettify.labels.circularReference = 'Circular Reference';
-prettify.labels.codeOmitted = 'Code Omitted';
-prettify.labels.itemsUnknown = 'Items Unknown';
+pretty.labels.circularReference = 'Circular Reference';
+pretty.labels.codeOmitted = 'Code Omitted';
+pretty.labels.itemsUnknown = 'Items Unknown';
 
 // reset to defaults
-prettify.labels.reset();
+pretty.labels.reset();
 ```
 
 ## Changelog

@@ -1,4 +1,5 @@
 const colors = require('../../colors/colors.js');
+const options = require('../../options/options.js');
 const StringHandler = require('./StringHandler.js');
 
 describe('StringHandler.test()', () => {
@@ -27,5 +28,28 @@ describe('StringHandler.format()', () => {
 		const date = 'abc\rdef';
 		const formatted = colors.unstyle(StringHandler.format(date));
 		expect(formatted).toBe('`abc\rdef`');
+	});
+	it('should avoid backticks if set such', () => {
+		options.preferBackticks = false;
+		const date = 'abc\rdef';
+		const formatted = colors.unstyle(StringHandler.format(date));
+		expect(formatted).toBe('"abc\\rdef"');
+		options.reset();
+	});
+});
+
+describe('StringHandler.format() with options.quoteStyle', () => {
+	beforeEach(options.reset);
+	it('should output single quotes', () => {
+		options.quoteStyle = 'single';
+		const date = 'def';
+		const formatted = colors.unstyle(StringHandler.format(date));
+		expect(formatted).toBe("'def'");
+	});
+	it('should output backtick quotes', () => {
+		options.quoteStyle = 'backtick';
+		const date = 'ghi';
+		const formatted = colors.unstyle(StringHandler.format(date));
+		expect(formatted).toBe('`ghi`');
 	});
 });
