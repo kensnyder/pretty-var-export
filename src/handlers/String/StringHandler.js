@@ -17,7 +17,13 @@ const quoteChars = {
 const StringHandler = {
 	test: value => typeof value === 'string' || value instanceof String,
 	format: str => {
+		let comment = '';
 		let quoteChar;
+		const lengthOverage = str.length - options.maxStringLength;
+		if (lengthOverage > 18) {
+			comment = `/* ... +${lengthOverage} chars */`;
+			str = str.slice(0, options.maxStringLength);
+		}
 		if (options.preferBackticks && str.match(/[\r\n\t]/)) {
 			// use backticks and multi-line string
 			str = jsesc(str, { quotes: 'backtick', es6: true, wrap: false });
@@ -36,7 +42,10 @@ const StringHandler = {
 		}
 		// colorize and add quotes
 		return (
-			colors.symbol(quoteChar) + colors.string(str) + colors.symbol(quoteChar)
+			colors.symbol(quoteChar) +
+			colors.string(str) +
+			colors.symbol(quoteChar) +
+			colors.comment(comment)
 		);
 	},
 };

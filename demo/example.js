@@ -10,7 +10,8 @@ const value = {
 		aBooleanToo: true,
 		twoPromises: [Promise.resolve(1), new Promise(() => {})],
 		anUndefined: undefined,
-		$anArray: [1, new Date()],
+		aDate: new Date(),
+		$anArray: [1, 2, 3, 4, 5],
 		'a-float': 1.552,
 		'0Infinity': 5 / 0,
 		'a NaN': NaN,
@@ -42,4 +43,6 @@ value.aCircularSet = value.aSet;
 
 console.log('example:');
 // pretty.options.preferBackticks = false;
+pretty.options.maxStringLength = 10;
+pretty.options.maxListItems = 3;
 pretty.log(value);

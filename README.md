@@ -142,7 +142,7 @@ pretty.options.showFunctionBody = false;
 pretty.options.maxStringLength = 1024 * 4;
 
 // max number of items to list (default=100)
-pretty.options.maxArrayItems = 100;
+pretty.options.maxListItems = 100;
 
 // output multi-line strings with backticks (default=true)
 pretty.options.preferBackticks = true; 
