@@ -1,8 +1,8 @@
 # pretty-var-export
 
-[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.2)](https://travis-ci.org/kensnyder/pretty-var-export)
-[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.2)](https://codecov.io/gh/kensnyder/pretty-var-export)
-[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.2)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.3)](https://travis-ci.org/kensnyder/pretty-var-export)
+[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.3)](https://codecov.io/gh/kensnyder/pretty-var-export)
+[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.3)](https://opensource.org/licenses/MIT)
 
 Export any value to valid and equivalent JavaScript code. Uses syntax coloring
 for debugging from the cli.
@@ -19,17 +19,24 @@ const pretty = require('pretty-var-export');
 // return string suitable for logging
 console.log(pretty(myValue));
 
-// pretty and log
+// OR prettify and log
 pretty.log(myValue);
 ```
 
-## Example
+## Example output
 
-![Example](./demo/example.png?raw=true&v=1.1.1)
+![Example](./demo/example.png?raw=true&v=1.1.3)
 
 ## Customization
 
-### Additional handlers
+- [Add handler](#add-handler)
+- [Remove handler](#remove-handler)
+- [Custom indent](#custom-indent)
+- [Custom colors](#custom-colors)
+- [Custom display options](#custom-display-options)
+- [Custom labels](#custom-labels)
+
+### Add handler
 
 Add custom handlers for formatting.
 
@@ -131,7 +138,7 @@ pretty.colors.disable();
 pretty.colors.reset();
 ```
 
-## Custom display options
+### Custom display options
 
 There are a few options that can change display. Below are defaults.
 
@@ -157,7 +164,7 @@ pretty.options.quoteStyle = 'double';
 pretty.options.reset();
 ```
 
-## Custom labels
+### Custom labels
 
 Labels can be changed or translated.
 
