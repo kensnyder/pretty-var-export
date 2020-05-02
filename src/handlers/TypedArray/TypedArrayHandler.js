@@ -1,4 +1,5 @@
 const colors = require('../../colors/colors.js');
+const options = require('../../options/options.js');
 const labels = require('../../labels/labels.js');
 
 const TypedArrayHandler = {
@@ -20,8 +21,7 @@ const TypedArrayHandler = {
 	},
 	format: (value, level, seen) => {
 		const constructorName = value.constructor.name;
-		const isBuffer = value instanceof Buffer;
-		const construct = isBuffer ? 'Buffer.from(' : `new ${constructorName}(`;
+		const construct = `${constructorName}.from(`;
 		if (seen) {
 			return (
 				colors.constructor(construct) +
@@ -38,10 +38,18 @@ const TypedArrayHandler = {
 			mapper = colors.number;
 		}
 		value = Array.from(value);
+		let comment = '';
+		const lengthOverage = value.length - options.maxListItems;
+		if (lengthOverage > 5) {
+			// 21+ chars for comment is average of 5 items
+			comment = ` /* ... +${lengthOverage} items */`;
+			value = value.slice(0, options.maxListItems);
+		}
 		return (
 			colors.constructor(construct) +
 			colors.symbol('[ ') +
 			value.map(mapper).join(colors.symbol(', ')) +
+			colors.comment(comment) +
 			colors.symbol(' ]') +
 			colors.constructor(')')
 		);

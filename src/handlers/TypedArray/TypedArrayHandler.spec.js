@@ -1,4 +1,5 @@
 const colors = require('../../colors/colors.js');
+const options = require('../../options/options.js');
 const indent = require('../../indent/indent.js');
 const TypedArrayHandler = require('./TypedArrayHandler.js');
 
@@ -36,7 +37,7 @@ describe('TypedArrayHandler.test() Int & Uint', () => {
 			expect(TypedArrayHandler.test(subject)).toBe(true);
 		});
 		it(`should recognize non-empty ${constructor.name}`, () => {
-			const subject = new constructor([1, 2, 3]);
+			const subject = constructor.from([1, 2, 3]);
 			expect(TypedArrayHandler.test(subject)).toBe(true);
 		});
 	});
@@ -49,7 +50,7 @@ describe('TypedArrayHandler.test() Float', () => {
 			expect(TypedArrayHandler.test(subject)).toBe(true);
 		});
 		it(`should recognize non-empty ${constructor.name}`, () => {
-			const subject = new constructor([1.5, 2.5, 3.5]);
+			const subject = constructor.from([1.5, 2.5, 3.5]);
 			expect(TypedArrayHandler.test(subject)).toBe(true);
 		});
 	});
@@ -59,28 +60,24 @@ describe('TypedArrayHandler.format() BigInt & BigUint', () => {
 	const walk = v => v + 'n';
 	constructors.big.forEach(constructor => {
 		it(`should output with numbers for ${constructor.name}`, () => {
-			const arr = new constructor([1n, 2n, 3n]);
+			const arr = constructor.from([1n, 2n, 3n]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([1n,2n,3n])`);
+			expect(formatted).toBe(`${constructor.name}.from([1n,2n,3n])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
-			const arr = new constructor([]);
+			const arr = new constructor();
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([])`);
+			expect(formatted).toBe(`${constructor.name}.from([])`);
 		});
 		it('should handle circular references', () => {
-			const arr = new constructor([]);
-			const result = TypedArrayHandler.format(
-				arr,
-				0,
-				new Set([arr]),
-				indent,
-				walk
-			);
+			const arr = new constructor();
+			const result = TypedArrayHandler.format(arr, 0, true, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([/*CircularReference*/])`);
+			expect(formatted).toBe(
+				`${constructor.name}.from([/*CircularReference*/])`
+			);
 		});
 	});
 });
@@ -92,25 +89,21 @@ describe('TypedArrayHandler.format() Int & Uint', () => {
 			const arr = new constructor([1, 2, 3]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([1,2,3])`);
+			expect(formatted).toBe(`${constructor.name}.from([1,2,3])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([])`);
+			expect(formatted).toBe(`${constructor.name}.from([])`);
 		});
 		it('should handle circular references', () => {
 			const arr = new constructor([]);
-			const result = TypedArrayHandler.format(
-				arr,
-				0,
-				new Set([arr]),
-				indent,
-				walk
-			);
+			const result = TypedArrayHandler.format(arr, 0, true, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([/*CircularReference*/])`);
+			expect(formatted).toBe(
+				`${constructor.name}.from([/*CircularReference*/])`
+			);
 		});
 	});
 });
@@ -122,25 +115,32 @@ describe('TypedArrayHandler.format() Float', () => {
 			const arr = new constructor([1.5, 2.5, 3.5]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([1.5,2.5,3.5])`);
+			expect(formatted).toBe(`${constructor.name}.from([1.5,2.5,3.5])`);
 		});
 		it(`should handle empty ${constructor.name}`, () => {
 			const arr = new constructor([]);
 			const result = TypedArrayHandler.format(arr, 0, false, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([])`);
+			expect(formatted).toBe(`${constructor.name}.from([])`);
 		});
 		it('should handle circular references', () => {
 			const arr = new constructor([]);
-			const result = TypedArrayHandler.format(
-				arr,
-				0,
-				new Set([arr]),
-				indent,
-				walk
-			);
+			const result = TypedArrayHandler.format(arr, 0, true, indent, walk);
 			const formatted = indent.removeAll(colors.unstyle(result));
-			expect(formatted).toBe(`new${constructor.name}([/*CircularReference*/])`);
+			expect(formatted).toBe(
+				`${constructor.name}.from([/*CircularReference*/])`
+			);
 		});
+	});
+});
+
+describe('TypedArrayHandler maxListItems', () => {
+	beforeEach(() => (options.maxListItems = 2));
+	afterEach(() => options.reset());
+	it(`should show ellipsis`, () => {
+		const arr = Uint8Array.from([1, 2, 3, 4, 5, 6, 7, 8]);
+		const result = TypedArrayHandler.format(arr, 0, false);
+		const formatted = indent.removeAll(colors.unstyle(result));
+		expect(formatted).toBe('Uint8Array.from([1,2/*...+6items*/])');
 	});
 });

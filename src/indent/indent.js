@@ -1,16 +1,8 @@
-let characters = '  ';
+const options = require('../options/options');
 
 function indent(level) {
-	return new Array(level).join(characters);
+	return new Array(level + 1).join(options.indent);
 }
-
-indent.set = function (numOrCharacters) {
-	if (typeof numOrCharacters === 'number') {
-		characters = new Array(numOrCharacters + 1).join(' ');
-	} else {
-		characters = String(numOrCharacters);
-	}
-};
 
 indent.removeAll = function (str) {
 	return str.replace(/\s+/g, '');

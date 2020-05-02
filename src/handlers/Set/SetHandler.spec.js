@@ -35,4 +35,10 @@ describe('SetHandler.format()', () => {
 		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('newSet([])');
 	});
+	it('should handle circular references', () => {
+		const set = new Set([]);
+		const result = SetHandler.format(set, 0, true, indent, walk);
+		const formatted = indent.removeAll(colors.unstyle(result));
+		expect(formatted).toBe('newSet(/*CircularReference*/)');
+	});
 });

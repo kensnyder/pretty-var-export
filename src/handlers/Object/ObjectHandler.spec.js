@@ -33,4 +33,10 @@ describe('ObjectHandler.format()', () => {
 		const formatted = indent.toSpaces(colors.unstyle(result));
 		expect(formatted).toBe('{}');
 	});
+	it('should handle circular references', () => {
+		const arr = {};
+		const result = ObjectHandler.format(arr, 0, true, indent, walk);
+		const formatted = indent.removeAll(colors.unstyle(result));
+		expect(formatted).toBe('{/*CircularReference*/}');
+	});
 });
