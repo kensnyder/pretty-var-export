@@ -1,5 +1,9 @@
 # pretty-var-export
 
+[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.2)](https://travis-ci.org/kensnyder/pretty-var-export)
+[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.2)](https://codecov.io/gh/kensnyder/pretty-var-export)
+[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.2)](https://opensource.org/licenses/MIT)
+
 Export any value to valid and equivalent JavaScript code. Uses syntax coloring
 for debugging from the cli.
 
