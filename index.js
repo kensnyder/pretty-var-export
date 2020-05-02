@@ -38,7 +38,7 @@ prettyVarExport.handlers = handlers;
 
 prettyVarExport.indent = indent;
 
-prettyVarExport.options = labels;
+prettyVarExport.labels = labels;
 
 prettyVarExport.options = options;
 

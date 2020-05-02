@@ -1,7 +1,7 @@
 const options = require('../options/options');
 
 function indent(level) {
-	return new Array(level + 1).join(options.indent);
+	return new Array(level).join(options.indent);
 }
 
 indent.removeAll = function (str) {

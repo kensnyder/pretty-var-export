@@ -54,7 +54,7 @@ const handlers = {
 		return this;
 	},
 	remove: function (name) {
-		list = list.filter(item => item.name === name);
+		list = list.filter(item => item.name !== name);
 		return this;
 	},
 	reset: function () {

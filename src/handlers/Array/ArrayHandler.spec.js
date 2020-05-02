@@ -48,7 +48,7 @@ describe('ArrayHandler circular reference', () => {
 });
 
 describe('ArrayHandler overages', () => {
-	beforeEach(options.reset);
+	beforeEach(() => options.reset());
 	it('should use ellipsis', () => {
 		const walk = n => n;
 		options.maxListItems = 2;

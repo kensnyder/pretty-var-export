@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.1 - 2 May 2020
+
+- Proper ellipsis behavior
+- 100% test coverage
+- Add .travis.yml
+
 ## v1.1.0 - 2 Apr 2020
 
 - Full unit tests

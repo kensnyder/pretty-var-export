@@ -21,7 +21,7 @@ pretty.log(myValue);
 
 ## Example
 
-![Example](./demo/example.png?raw=true&v=1.1.0)
+![Example](./demo/example.png?raw=true&v=1.1.1)
 
 ## Customization
 
@@ -89,17 +89,16 @@ By default, indentation is 2 spaces.
 ```js
 const pretty = require('pretty-var-export');
 
-pretty.indent.set(4); // 4 spaces
-pretty.indent.set('    '); // 4 spaces
-pretty.indent.set('\t'); // tab
-
-// reset to default
-pretty.indent.reset();
+pretty.options.indent = 4;      // 4 spaces
+pretty.options.indent = '    '; // 4 spaces
+pretty.options.indent = '\t';   // tab
 ```
 
 ### Custom colors
 
-Colors include the following:
+Colors come from the [ansi-colors](https://npmjs.com/package/ansi-colors) npm module.
+
+Formats include the following:
 - `boolean` for true and false (default yellow)
 - `comment` for comments (default gray)
 - `constructor` for instantiation (default blue)
@@ -130,22 +129,25 @@ pretty.colors.reset();
 
 ## Custom display options
 
-There are a few options that can change display.
+There are a few options that can change display. Below are defaults.
 
 ```js
 const pretty = require('pretty-var-export');
  
-// if true, show function bodies (default=false)
+// if true, show function bodies
 pretty.options.showFunctionBody = false;
 
-// the max length for strings (default=4096)
+// the max length for strings
 pretty.options.maxStringLength = 1024 * 4;
 
-// max number of items to list (default=100)
+// max number of items to list
 pretty.options.maxListItems = 100;
 
-// output multi-line strings with backticks (default=true)
-pretty.options.preferBackticks = true; 
+// output multi-line strings with backticks
+pretty.options.preferBackticks = true;
+ 
+// quote style for default strings (single, double or backtick)
+pretty.options.quoteStyle = 'double';
  
 // reset to defaults
 pretty.options.reset();

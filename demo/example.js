@@ -34,7 +34,8 @@ const value = {
 	aWeakMap: new WeakMap(),
 	anEmptyArray: [],
 	anEmptyObject: {},
-	aBuffer: Buffer.from([42, 4, 1, 20]),
+	/* prettier-ignore */
+	aBuffer: Buffer.from([42, 4, 1, 20, 1, 2, 4, 8, 16, 32, 64, 128, 255, 127, 63, 31]),
 	aBufferToo: Buffer.from('🪂⛳️'),
 };
 value.aCircularArray = value.anObject.$anArray;
@@ -43,6 +44,6 @@ value.aCircularSet = value.aSet;
 
 console.log('example:');
 // pretty.options.preferBackticks = false;
-pretty.options.maxStringLength = 10;
-pretty.options.maxListItems = 3;
+pretty.options.maxStringLength = 20;
+pretty.options.maxListItems = 10;
 pretty.log(value);

@@ -7,8 +7,12 @@ Object.defineProperty(Store.prototype, 'reset', {
 	enumerable: false,
 	configurable: false,
 	writable: false,
-	value: function () {
-		Object.assign(this, this.__defaults);
+	value: function (field) {
+		if (field) {
+			this[field] = this.__defaults[field];
+		} else {
+			Object.assign(this, this.__defaults);
+		}
 		return this;
 	},
 });

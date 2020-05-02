@@ -7,11 +7,11 @@ describe('indent()', () => {
 	});
 	it('should use options._indentChars', () => {
 		const chars = options._indentChars;
-		expect(indent(2)).toBe(chars + chars);
+		expect(indent(3)).toBe(chars + chars);
 	});
 	it('should allow changing indent chars', () => {
 		options.indent = '\t';
-		expect(indent(2)).toBe('\t\t');
+		expect(indent(3)).toBe('\t\t');
 		options.reset();
 	});
 });
