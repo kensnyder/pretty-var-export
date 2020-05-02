@@ -5,15 +5,15 @@ const options = require('../../options/options.js');
 const ArrayHandler = {
 	test: Array.isArray,
 	format: (value, level, seen, indent, walk) => {
+		if (value.length === 0) {
+			return colors.symbol('[]');
+		}
 		if (seen) {
 			return (
 				colors.symbol('[') +
 				colors.comment(` /* ${labels.circularReference} */ `) +
 				colors.symbol(']')
 			);
-		}
-		if (value.length === 0) {
-			return colors.symbol('[]');
 		}
 		let comment = '';
 		const lengthOverage = value.length - options.maxListItems;

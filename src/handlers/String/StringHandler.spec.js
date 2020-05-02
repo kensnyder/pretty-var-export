@@ -1,5 +1,6 @@
 const colors = require('../../colors/colors.js');
 const options = require('../../options/options.js');
+const indent = require('../../indent/indent.js');
 const StringHandler = require('./StringHandler.js');
 
 describe('StringHandler.test()', () => {
@@ -39,7 +40,7 @@ describe('StringHandler.format()', () => {
 });
 
 describe('StringHandler.format() with options.quoteStyle', () => {
-	beforeEach(options.reset);
+	beforeEach(() => options.reset());
 	it('should output single quotes', () => {
 		options.quoteStyle = 'single';
 		const date = 'def';
@@ -51,5 +52,15 @@ describe('StringHandler.format() with options.quoteStyle', () => {
 		const date = 'ghi';
 		const formatted = colors.unstyle(StringHandler.format(date));
 		expect(formatted).toBe('`ghi`');
+	});
+});
+
+describe('StringHandler overages', () => {
+	beforeEach(() => options.reset());
+	it('should use ellipsis', () => {
+		options.maxStringLength = 7;
+		const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+		const formatted = colors.unstyle(StringHandler.format(alphabet));
+		expect(formatted).toBe('"abcdefg"/* ... +19 chars */');
 	});
 });

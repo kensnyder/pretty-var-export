@@ -1,5 +1,6 @@
 const colors = require('../../colors/colors.js');
 const indent = require('../../indent/indent.js');
+const options = require('../../options/options.js');
 const ArrayHandler = require('./ArrayHandler.js');
 
 describe('ArrayHandler.test()', () => {
@@ -36,5 +37,25 @@ describe('ArrayHandler.format()', () => {
 		const result = ArrayHandler.format(arr, 0, false, indent, walk);
 		const formatted = indent.removeAll(colors.unstyle(result));
 		expect(formatted).toBe('[]');
+	});
+});
+
+describe('ArrayHandler circular reference', () => {
+	it('should use ellipsis', () => {
+		const formatted = colors.unstyle(ArrayHandler.format([1], 0, true));
+		expect(formatted).toBe('[ /* Circular Reference */ ]');
+	});
+});
+
+describe('ArrayHandler overages', () => {
+	beforeEach(options.reset);
+	it('should use ellipsis', () => {
+		const walk = n => n;
+		options.maxListItems = 2;
+		const numbers = [1, 2, 3, 4, 5];
+		const formatted = indent.removeAll(
+			colors.unstyle(ArrayHandler.format(numbers, 0, false, indent, walk))
+		);
+		expect(formatted).toBe('[1,2/*...+3items*/]');
 	});
 });

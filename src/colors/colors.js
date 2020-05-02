@@ -20,7 +20,7 @@ const colors = new Store({
 	unstyle: c.unstyle,
 	disable: function () {
 		const functions =
-			'boolean comment constructor null number property regexp string symbol undefined';
+			'boolean comment constructor escape null number property regexp string symbol undefined';
 		functions.split(' ').forEach(name => {
 			this[name] = v => v;
 		});

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx jest",
     "test-watch": "npx jest --watch",
+    "coverage": "npx jest --collectCoverage",
     "demo": "node demo/example.js"
   },
   "repository": {
@@ -27,6 +28,7 @@
   },
   "homepage": "https://github.com/kensnyder/pretty-var-export#readme",
   "devDependencies": {
+    "codecov": "^3.6.5",
     "jest": "^25.2.4",
     "prettier": "^2.0.2"
   },
