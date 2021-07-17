@@ -16,8 +16,9 @@ const colors = new Store({
 	undefined: c.yellow,
 	// palette for more colors
 	palette: c,
-	// utility functions
+	// for unit tests
 	unstyle: c.unstyle,
+	// for disabling all colors
 	disable: function () {
 		const functions =
 			'boolean comment constructor escape null number property regexp string symbol undefined';

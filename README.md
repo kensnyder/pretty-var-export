@@ -1,8 +1,8 @@
 # pretty-var-export
 
-[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.4)](https://travis-ci.org/kensnyder/pretty-var-export)
-[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.4)](https://codecov.io/gh/kensnyder/pretty-var-export)
-[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.4)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.5)](https://travis-ci.org/kensnyder/pretty-var-export)
+[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.5)](https://codecov.io/gh/kensnyder/pretty-var-export)
+[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.5)](https://opensource.org/licenses/MIT)
 
 Export any value to valid and equivalent JavaScript code. Uses syntax coloring
 for debugging from the cli.
@@ -23,9 +23,11 @@ console.log(pretty(myValue));
 pretty.log(myValue);
 ```
 
+_Note that coloring can be disabled with `pretty.colors.disable()`._
+
 ## Example output
 
-![Example](./demo/example.png?raw=true&v=1.1.4)
+![Example](./demo/example.png?raw=true&v=1.1.5)
 
 ## Customization
 

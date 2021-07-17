@@ -1,6 +1,6 @@
 {
   "name": "pretty-var-export",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Export any value to valid and equivalent JavaScript code",
   "main": "index.js",
   "scripts": {
@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/kensnyder/pretty-var-export#readme",
   "devDependencies": {
-    "codecov": "^3.8.1",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1"
+    "codecov": "^3.8.2",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2"
   },
   "dependencies": {
     "ansi-colors": "^4.1.1",

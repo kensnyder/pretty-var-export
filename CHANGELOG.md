@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.5 - 17 Jul 2021
+
+- Update dependencies
+- Clarify how to disable colors
+
 ## v1.1.3 - 2 May 2020
 
 - Proper ellipsis behavior
