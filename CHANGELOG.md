@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.6 - 31 Aug 2022
+
+- Update dependencies
+- Switch from TravisCI to AppVeyor
+- Test on node 18
+
 ## v1.1.5 - 17 Jul 2021
 
 - Update dependencies

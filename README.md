@@ -1,8 +1,8 @@
 # pretty-var-export
 
-[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.5)](https://travis-ci.org/kensnyder/pretty-var-export)
-[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.5)](https://codecov.io/gh/kensnyder/pretty-var-export)
-[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.5)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.6)](https://travis-ci.org/kensnyder/pretty-var-export)
+[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.6)](https://codecov.io/gh/kensnyder/pretty-var-export)
+[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.6)](https://opensource.org/licenses/MIT)
 
 Export any value to valid and equivalent JavaScript code. Uses syntax coloring
 for debugging from the cli.
@@ -21,13 +21,16 @@ console.log(pretty(myValue));
 
 // OR prettify and log
 pretty.log(myValue);
+
+// OR import and log in one line
+require('pretty-var-export').log(myValue);
 ```
 
 _Note that coloring can be disabled with `pretty.colors.disable()`._
 
 ## Example output
 
-![Example](./demo/example.png?raw=true&v=1.1.5)
+![Example](./demo/example.png?raw=true&v=1.1.6)
 
 ## Customization
 
@@ -49,8 +52,8 @@ const pretty = require('pretty-var-export');
 
 // each handler must have a test and format method
 pretty.handlers.add('nan', {
-    test: isNaN,
-    format: () => pretty.colors.palette.cyan('NaN'),
+	test: isNaN,
+	format: () => pretty.colors.palette.cyan('NaN'),
 });
 
 // reset to default list
@@ -72,6 +75,7 @@ pretty.handlers.reset();
 ```
 
 Default handler names:
+
 - arguments
 - Array
 - BigInt
@@ -102,9 +106,9 @@ By default, indentation is 2 spaces.
 ```js
 const pretty = require('pretty-var-export');
 
-pretty.options.indent = 4;      // 4 spaces
+pretty.options.indent = 4; // 4 spaces
 pretty.options.indent = '    '; // 4 spaces
-pretty.options.indent = '\t';   // tab
+pretty.options.indent = '\t'; // tab
 ```
 
 ### Custom colors
@@ -112,6 +116,7 @@ pretty.options.indent = '\t';   // tab
 Colors come from the [ansi-colors](https://npmjs.com/package/ansi-colors) npm module.
 
 Formats include the following:
+
 - `boolean` for true and false (default yellow)
 - `comment` for comments (default gray)
 - `constructor` for instantiation (default blue)
@@ -146,7 +151,7 @@ There are a few options that can change display. Below are defaults.
 
 ```js
 const pretty = require('pretty-var-export');
- 
+
 // if true, show function bodies
 pretty.options.showFunctionBody = false;
 
@@ -158,10 +163,10 @@ pretty.options.maxListItems = 100;
 
 // output multi-line strings with backticks
 pretty.options.preferBackticks = true;
- 
+
 // quote style for default strings (single, double or backtick)
 pretty.options.quoteStyle = 'double';
- 
+
 // reset to defaults
 pretty.options.reset();
 ```
