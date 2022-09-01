@@ -1,6 +1,6 @@
 {
 	"name": "pretty-var-export",
-	"version": "1.1.6",
+	"version": "1.1.7",
 	"description": "Export any value to valid and equivalent JavaScript code",
 	"main": "index.js",
 	"scripts": {
