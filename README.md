@@ -1,8 +1,8 @@
 # pretty-var-export
 
-[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.1.7)](https://travis-ci.org/kensnyder/pretty-var-export)
-[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.1.7)](https://codecov.io/gh/kensnyder/pretty-var-export)
-[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.1.7)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/kensnyder/pretty-var-export.svg?branch=master&v=1.2.0)](https://travis-ci.org/kensnyder/pretty-var-export)
+[![Code Coverage](https://codecov.io/gh/kensnyder/pretty-var-export/branch/master/graph/badge.svg?v=1.2.0)](https://codecov.io/gh/kensnyder/pretty-var-export)
+[![MIT License](https://img.shields.io/github/license/kensnyder/pretty-var-export.svg?v=1.2.0)](https://opensource.org/licenses/MIT)
 
 Export any value to valid and equivalent JavaScript code. Uses syntax coloring
 for debugging from the cli.
@@ -30,7 +30,7 @@ _Note that coloring can be disabled with `pretty.colors.disable()`._
 
 ## Example output
 
-![Example](./demo/example.png?raw=true&v=1.1.7)
+![Example](./demo/example.png?raw=true&v=1.2.0)
 
 ## Customization
 
@@ -45,7 +45,7 @@ _Note that coloring can be disabled with `pretty.colors.disable()`._
 
 Add custom handlers for formatting.
 
-For example, show NaN as a different color than numbers:
+For example, to show NaN as a different color than numbers:
 
 ```js
 const pretty = require('pretty-var-export');
@@ -56,7 +56,7 @@ pretty.handlers.add('nan', {
 	format: () => pretty.colors.palette.cyan('NaN'),
 });
 
-// reset to default list
+// if you want to reset to default list
 pretty.handlers.reset();
 ```
 
@@ -70,7 +70,7 @@ const pretty = require('pretty-var-export');
 // see below for list of names
 pretty.handlers.remove('nan');
 
-// reset to default list
+// or you can reset all handlers
 pretty.handlers.reset();
 ```
 

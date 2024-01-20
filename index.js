@@ -22,13 +22,17 @@ function prettyVarExport(value) {
 	}
 }
 
+/**
+ * Log given values to stdout with a stacktrace label
+ * @param {any[]} args
+ */
 prettyVarExport.log = function log(...args) {
 	try {
 		const fromLine = new Error().stack.split('\n')[2].trim();
 		console.log(`pretty-var-export ${fromLine}`);
 	} catch (e) {}
 	args.forEach(value => {
-		console.log(prettyVarExport(value));
+		process.stdout.write(prettyVarExport(value) + '\n');
 	});
 };
 

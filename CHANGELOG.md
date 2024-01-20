@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0 - 19 Jan 2024
+
+- Add index.d.ts
+- Update deps
+- Test on node 20
+- Clarify some README points
+
 ## v1.1.7 - 31 Aug 2022
 
 - Update dependencies
