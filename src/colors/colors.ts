@@ -1,7 +1,6 @@
 import c from 'ansi-colors';
-import Store from '../Store/Store';
 
-const colors = new Store({
+const defaultColors = {
 	// colors
 	boolean: c.yellow,
 	comment: c.gray,
@@ -18,14 +17,20 @@ const colors = new Store({
 	palette: c,
 	// for unit tests
 	unstyle: c.unstyle,
-	// for disabling all colors
-	disable: function () {
+};
+
+const identity = (v: string) => v;
+
+const colors = {
+	...defaultColors,
+	reset: () => Object.assign(colors, defaultColors),
+	disable: () => {
 		const functions =
 			'boolean comment constructor escape null number property regexp string symbol undefined';
 		functions.split(' ').forEach(name => {
-			this[name] = (v: string) => v;
+			colors[name] = identity;
 		});
 	},
-});
+};
 
 export default colors;

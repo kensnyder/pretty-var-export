@@ -24,16 +24,19 @@ function prettyVarExport(value: any) {
 
 /**
  * Log given values to stdout with a stacktrace label
- * @param {any[]} args
  */
-prettyVarExport.log = function log(...args) {
+prettyVarExport.log = function log(...args: any[]) {
 	try {
 		const fromLine = new Error().stack?.split('\n')[2].trim() || '';
 		console.log(`pretty-var-export ${fromLine}`);
 	} catch (e) {}
-	args.forEach(value => {
-		process.stdout.write(prettyVarExport(value) + '\n');
-	});
+	if (typeof process === 'undefined' || typeof process.stdout === 'undefined') {
+		console.log(prettyVarExport(args));
+	} else {
+		args.forEach(value => {
+			process.stdout.write(prettyVarExport(value) + '\n');
+		});
+	}
 };
 
 prettyVarExport.colors = colors;

@@ -1,6 +1,4 @@
-import Store from '../Store/Store';
-
-const options = new Store({
+const defaultOptions = {
 	// if true, show source code of functions
 	showFunctionBody: false,
 	// longest string length before ellipsis
@@ -13,24 +11,21 @@ const options = new Store({
 	quoteStyle: 'double',
 	// the string to use for indentation
 	_indentChars: '  ',
-});
+};
 
-// special prop "indent" with a setter that allows
-// setting indent to the given string or
-// the given number of spaces
-Object.defineProperty(options, 'indent', {
-	enumerable: false,
-	configurable: false,
-	get: function () {
-		return this._indentChars;
+const options = {
+	...defaultOptions,
+	reset: () => Object.assign(options, defaultOptions),
+	get indent() {
+		return options._indentChars;
 	},
-	set: function (numOrCharacters: number | string) {
+	set indent(numOrCharacters: number | string) {
 		if (typeof numOrCharacters === 'number') {
 			this._indentChars = new Array(numOrCharacters + 1).join(' ');
 		} else {
 			this._indentChars = String(numOrCharacters);
 		}
 	},
-});
+};
 
 export default options;

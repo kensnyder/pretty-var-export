@@ -21,6 +21,14 @@ import URLHandler from './URL/URLHandler';
 import URLSearchParamsHandler from './URLSearchParams/URLSearchParamsHandler';
 import ObjectHandler from './Object/ObjectHandler';
 
+export type Formatter = (
+	value: any,
+	level: number,
+	seen: boolean,
+	indent: (level: number) => string,
+	walk: Formatter
+) => string;
+
 const defaultList = [
 	{ name: 'null', handler: nullHandler },
 	{ name: 'undefined', handler: undefinedHandler },
@@ -53,7 +61,7 @@ const handlers = {
 		name: string,
 		handler: {
 			test: (value: any) => boolean;
-			format: (value: any) => string;
+			format: Formatter;
 		}
 	) {
 		list = [{ name, handler }, ...list];
