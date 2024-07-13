@@ -1,16 +1,25 @@
 {
 	"compilerOptions": {
-		// Tells TypeScript to read JS files, as
-		// normally they are ignored as source files
 		"allowJs": true,
-		// Generate d.ts files
 		"declaration": true,
-		// This compiler run should
-		// only output d.ts files
 		"emitDeclarationOnly": true,
-		// go to js file when using IDE functions like
-		// "Go to Definition" in VSCode
+		"allowSyntheticDefaultImports": true,
 		"declarationMap": true,
-		"module": "esnext",
-	},
+
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"target": "ES2022",
+		"types": ["vitest/globals"],
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"resolveJsonModule": true,
+		"baseUrl": ".",
+		"skipLibCheck": true,
+		"noEmit": true,
+		"strict": true,
+		"noImplicitAny": false,
+		"forceConsistentCasingInFileNames": true
+	}
 }
