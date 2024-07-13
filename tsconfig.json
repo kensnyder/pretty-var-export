@@ -1,11 +1,5 @@
 {
 	"compilerOptions": {
-		"allowJs": true,
-		"declaration": true,
-		"emitDeclarationOnly": true,
-		"allowSyntheticDefaultImports": true,
-		"declarationMap": true,
-
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"target": "ES2022",
 		"types": ["vitest/globals"],
@@ -17,7 +11,6 @@
 		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"skipLibCheck": true,
-		"noEmit": true,
 		"strict": true,
 		"noImplicitAny": false,
 		"forceConsistentCasingInFileNames": true

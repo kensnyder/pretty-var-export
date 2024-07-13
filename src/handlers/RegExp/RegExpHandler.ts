@@ -1,7 +1,7 @@
 import colors from '../../colors/colors';
 
 const RegExpHandler = {
-	test: (value: any) => value instanceof RegExp,
+	test: (value: unknown) => value instanceof RegExp,
 	format: (regex: RegExp) => {
 		const [, expression, flags] = String(regex).match(/^\/(.+?)\/([a-z]*)$/)!;
 		return (

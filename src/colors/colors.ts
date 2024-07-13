@@ -1,4 +1,4 @@
-import c from 'ansi-colors';
+import * as c from 'ansi-colors';
 
 const defaultColors = {
 	// colors

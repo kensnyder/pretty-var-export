@@ -4,10 +4,10 @@ import indent from './src/indent/indent';
 import labels from './src/labels/labels';
 import options from './src/options/options';
 
-function prettyVarExport(value: any) {
+function pretty(value: unknown) {
 	const objectsSeen = new Set();
 	return walk(value, 0);
-	function walk(value: any, level: number) {
+	function walk(value: unknown, level: number) {
 		for (const handler of handlers.list()) {
 			if (handler.test(value)) {
 				if (typeof value === 'object') {
@@ -25,28 +25,28 @@ function prettyVarExport(value: any) {
 /**
  * Log given values to stdout with a stacktrace label
  */
-prettyVarExport.log = function log(...args: any[]) {
+pretty.log = function log(...args: any[]) {
 	try {
 		const fromLine = new Error().stack?.split('\n')[2].trim() || '';
 		console.log(`pretty-var-export ${fromLine}`);
 	} catch (e) {}
 	if (typeof process === 'undefined' || typeof process.stdout === 'undefined') {
-		console.log(prettyVarExport(args));
+		console.log(pretty(args));
 	} else {
 		args.forEach(value => {
-			process.stdout.write(prettyVarExport(value) + '\n');
+			process.stdout.write(pretty(value) + '\n');
 		});
 	}
 };
 
-prettyVarExport.colors = colors;
+pretty.colors = colors;
 
-prettyVarExport.handlers = handlers;
+pretty.handlers = handlers;
 
-prettyVarExport.indent = indent;
+pretty.indent = indent;
 
-prettyVarExport.labels = labels;
+pretty.labels = labels;
 
-prettyVarExport.options = options;
+pretty.options = options;
 
-export default prettyVarExport;
+export default pretty;

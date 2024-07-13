@@ -47,9 +47,9 @@ const TypedArrayHandler = {
 		}
 		let mapper;
 		if (value instanceof BigInt64Array || value instanceof BigUint64Array) {
-			mapper = v => colors.number(v + 'n');
+			mapper = v => colors.number(String(v) + 'n');
 		} else {
-			mapper = colors.number;
+			mapper = v => colors.number(String(v));
 		}
 		// @ts-expect-error  BigInt64Array and BigUint64Array are not
 		value = Array.from(value);

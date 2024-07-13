@@ -1,7 +1,7 @@
 import colors from '../../colors/colors';
 
 const nullHandler = {
-	test: (value: any) => value === null,
+	test: (value: unknown) => value === null,
 	format: () => colors.null('null'),
 };
 

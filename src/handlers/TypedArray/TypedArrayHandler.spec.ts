@@ -15,7 +15,7 @@ const constructors = {
 		Uint8ClampedArray,
 	],
 	float: [Float32Array, Float64Array],
-};
+} as const;
 
 describe('TypedArrayHandler.test() BigInt & BigUint', () => {
 	constructors.big.forEach(constructor => {
@@ -138,7 +138,9 @@ describe('TypedArrayHandler maxListItems', () => {
 	beforeEach(() => {
 		options.maxListItems = 2;
 	});
-	afterEach(() => options.reset());
+	afterEach(() => {
+		options.reset();
+	});
 	it(`should show ellipsis`, () => {
 		const arr = Uint8Array.from([1, 2, 3, 4, 5, 6, 7, 8]);
 		const result = TypedArrayHandler.format(arr, 0, false);

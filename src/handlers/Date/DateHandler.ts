@@ -4,7 +4,7 @@ const zeropad = (num: number, len: number) =>
 	(new Array(len).join('0') + String(num)).slice(-len);
 
 const dateHandler = {
-	test: (value: any) => value instanceof Date,
+	test: (value: unknown) => value instanceof Date,
 	format: (date: Date) => {
 		let dateStr: string;
 		if (isNaN(date.getFullYear())) {

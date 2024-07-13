@@ -14,7 +14,7 @@ npm install pretty-var-export
 ## Usage
 
 ```js
-const pretty = require('pretty-var-export');
+import pretty from 'pretty-var-export';
 
 // return string suitable for logging
 console.log(pretty(myValue));
@@ -48,7 +48,7 @@ Add custom handlers for formatting.
 For example, to show NaN as a different color than numbers:
 
 ```js
-const pretty = require('pretty-var-export');
+import pretty from 'pretty-var-export';
 
 // each handler must have a test and format method
 pretty.handlers.add('nan', {
@@ -65,7 +65,7 @@ pretty.handlers.reset();
 You can remove handlers by name.
 
 ```js
-const pretty = require('pretty-var-export');
+import pretty from 'pretty-var-export';
 
 // see below for list of names
 pretty.handlers.remove('nan');
@@ -82,6 +82,7 @@ Default handler names:
 - Boolean
 - Date
 - Error
+- Entries
 - Function
 - Map
 - null
@@ -103,8 +104,8 @@ Default handler names:
 
 By default, indentation is 2 spaces.
 
-```js
-const pretty = require('pretty-var-export');
+```ts
+import pretty from 'pretty-var-export';
 
 pretty.options.indent = 4; // 4 spaces
 pretty.options.indent = '    '; // 4 spaces
@@ -129,8 +130,8 @@ Formats include the following:
 - `symbol` for quotes, braces, parens, commas, colons (default white)
 - `undefined` for undefined (default yellow)
 
-```js
-const pretty = require('pretty-var-export');
+```ts
+import pretty from 'pretty-var-export';
 
 // existing color functions from the ansi-colors npm package
 pretty.colors.symbol = pretty.colors.palette.blueBright;
@@ -149,8 +150,8 @@ pretty.colors.reset();
 
 There are a few options that can change display. Below are defaults.
 
-```js
-const pretty = require('pretty-var-export');
+```ts
+import pretty from 'pretty-var-export';
 
 // if true, show function bodies
 pretty.options.showFunctionBody = false;
@@ -175,8 +176,8 @@ pretty.options.reset();
 
 Labels can be changed or translated.
 
-```js
-const pretty = require('pretty-var-export');
+```ts
+import pretty from 'pretty-var-export';
 
 // defaults
 pretty.labels.circularReference = 'Circular Reference';

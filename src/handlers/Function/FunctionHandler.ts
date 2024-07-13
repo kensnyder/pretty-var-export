@@ -3,7 +3,7 @@ import options from '../../options/options';
 import labels from '../../labels/labels';
 
 const FunctionHandler = {
-	test: (value: any) => typeof value === 'function',
+	test: (value: unknown) => typeof value === 'function',
 	format: (func: Function) => {
 		if (options.showFunctionBody) {
 			return colors.constructor(func.toString());

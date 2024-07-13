@@ -16,7 +16,7 @@ const defaultOptions = {
 const options = {
 	...defaultOptions,
 	reset: () => Object.assign(options, defaultOptions),
-	get indent() {
+	get indent(): string {
 		return options._indentChars;
 	},
 	set indent(numOrCharacters: number | string) {

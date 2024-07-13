@@ -1,22 +1,15 @@
 import colors from '../../colors/colors';
 import labels from '../../labels/labels';
-
-export type Walker = (
-	value: Set<any> | any[],
-	level: number,
-	seen: boolean,
-	indent: (level: number) => string,
-	walk: Walker
-) => string;
+import { Formatter } from '../../types';
 
 const SetHandler = {
-	test: (value: any) => value instanceof Set,
+	test: (value: unknown) => value instanceof Set,
 	format: (
-		value: Set<any> | any[],
+		value: Set<unknown> | unknown[],
 		level: number,
-		seen: boolean,
+		seen: Set<unknown>,
 		indent: (level: number) => string,
-		walk: Walker
+		walk: Formatter
 	) => {
 		if (seen) {
 			return (

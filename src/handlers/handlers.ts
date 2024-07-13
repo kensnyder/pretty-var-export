@@ -20,16 +20,20 @@ import WeakSetHandler from './WeakSet/WeakSetHandler';
 import URLHandler from './URL/URLHandler';
 import URLSearchParamsHandler from './URLSearchParams/URLSearchParamsHandler';
 import ObjectHandler from './Object/ObjectHandler';
+import EntriesHandler from './Entries/EntriesHandler';
+import { Formatter } from '../types';
 
-export type Formatter = (
-	value: any,
-	level: number,
-	seen: boolean,
-	indent: (level: number) => string,
-	walk: Formatter
-) => string;
+type Handler = {
+	test: (value: unknown) => boolean;
+	format: (...args: any[]) => string;
+};
 
-const defaultList = [
+type List = {
+	name: string;
+	handler: Handler;
+};
+
+const defaultList: List[] = [
 	{ name: 'null', handler: nullHandler },
 	{ name: 'undefined', handler: undefinedHandler },
 	{ name: 'Date', handler: DateHandler },
@@ -51,7 +55,8 @@ const defaultList = [
 	{ name: 'WeakSet', handler: WeakSetHandler },
 	{ name: 'URL', handler: URLHandler },
 	{ name: 'URLSearchParams', handler: URLSearchParamsHandler },
-	{ name: 'ObjectParams', handler: ObjectHandler },
+	{ name: 'Entries', handler: EntriesHandler },
+	{ name: 'Object', handler: ObjectHandler },
 ];
 
 let list = [...defaultList];
@@ -60,7 +65,7 @@ const handlers = {
 	add(
 		name: string,
 		handler: {
-			test: (value: any) => boolean;
+			test: (value: unknown) => boolean;
 			format: Formatter;
 		}
 	) {

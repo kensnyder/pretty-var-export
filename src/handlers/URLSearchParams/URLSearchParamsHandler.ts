@@ -1,7 +1,7 @@
 import colors from '../../colors/colors';
 
 const URLSearchParamsHandler = {
-	test: (value: any) => value instanceof URLSearchParams,
+	test: (value: unknown) => value instanceof URLSearchParams,
 	format: (value: URLSearchParams) => {
 		return (
 			colors.constructor('new URLSearchParams(') +

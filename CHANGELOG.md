@@ -1,9 +1,15 @@
 # Changelog
 
+## v2.0.0 - 13 Jul 2024
+
+- Convert to TypeScript
+- Update dependencies
+- Support for Headers, FormData
+
 ## v1.2.0 - 19 Jan 2024
 
 - Add index.d.ts
-- Update deps
+- Update dependencies
 - Test on node 20
 - Clarify some README points
 

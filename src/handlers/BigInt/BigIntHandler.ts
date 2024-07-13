@@ -1,7 +1,7 @@
 import colors from '../../colors/colors';
 
 const BigIntHandler = {
-	test: (value: any) => typeof value === 'bigint',
+	test: (value: unknown) => typeof value === 'bigint',
 	format: (int: BigInt) => {
 		return colors.number(int + 'n');
 	},

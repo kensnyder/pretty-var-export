@@ -2,13 +2,13 @@ import colors from '../../colors/colors';
 import labels from '../../labels/labels';
 
 const ObjectHandler = {
-	test: (value: any) => typeof value === 'object',
+	test: (value: unknown) => typeof value === 'object',
 	format: (
-		value: Record<string, any>,
+		value: Record<string, unknown>,
 		level: number,
 		seen: boolean,
 		indent: (level: number) => string,
-		walk: (value: any, level: number) => string
+		walk: (value: unknown, level: number) => string
 	) => {
 		if (seen) {
 			return (

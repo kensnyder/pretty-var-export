@@ -2,7 +2,7 @@ import colors from '../../colors/colors';
 import StringHandler from '../String/StringHandler';
 
 const URLHandler = {
-	test: (value: any) => value instanceof URL,
+	test: (value: unknown) => value instanceof URL,
 	format: (value: URL) => {
 		return (
 			colors.constructor('new URL(') +

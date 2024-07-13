@@ -1,7 +1,7 @@
 import colors from '../../colors/colors';
 
 const MapHandler = {
-	test: (value: any) => value instanceof Map,
+	test: (value: unknown) => value instanceof Map,
 	format: (
 		value: Map<any, any>,
 		level: number,

@@ -1,7 +1,7 @@
 import colors from '../../colors/colors';
 
 const undefinedHandler = {
-	test: (value: any) => value === undefined,
+	test: (value: unknown) => value === undefined,
 	format: () => colors.undefined('undefined'),
 };
 

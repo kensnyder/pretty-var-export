@@ -9,7 +9,7 @@ const ArrayHandler = {
 		level: number,
 		seen: boolean,
 		indent: (level: number) => string,
-		walk: (value: any[], level: number) => string
+		walk: (value: unknown, level: number) => string
 	) => {
 		if (value.length === 0) {
 			return colors.symbol('[]');
