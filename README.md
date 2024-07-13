@@ -13,17 +13,14 @@ npm install pretty-var-export
 
 ## Usage
 
-```js
+```ts
 import pretty from 'pretty-var-export';
 
 // return string suitable for logging
 console.log(pretty(myValue));
 
 // OR prettify and log
-pretty.log(myValue);
-
-// OR import and log in one line
-require('pretty-var-export').log(myValue);
+pretty.log(myValue1, myValue2);
 ```
 
 _Note that coloring can be disabled with `pretty.colors.disable()`._
@@ -47,7 +44,7 @@ Add custom handlers for formatting.
 
 For example, to show NaN as a different color than numbers:
 
-```js
+```ts
 import pretty from 'pretty-var-export';
 
 // each handler must have a test and format method
@@ -64,7 +61,7 @@ pretty.handlers.reset();
 
 You can remove handlers by name.
 
-```js
+```ts
 import pretty from 'pretty-var-export';
 
 // see below for list of names
