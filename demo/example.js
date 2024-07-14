@@ -1,4 +1,4 @@
-const pretty = require('../dist/index.cjs');
+import pretty from '../dist/index.mjs';
 
 const value = {
 	aNumber: 1,

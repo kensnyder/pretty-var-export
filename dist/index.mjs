@@ -967,7 +967,7 @@ indent.toSpaces = function(str) {
 };
 
 // index.ts
-function pretty(value) {
+var pretty = (value) => {
   const objectsSeen = /* @__PURE__ */ new Set();
   return walk(value, 0);
   function walk(value2, level) {
@@ -983,8 +983,8 @@ function pretty(value) {
       }
     }
   }
-}
-function log(...args) {
+};
+pretty.log = (...args) => {
   try {
     const fromLine = new Error().stack?.split("\n")[2].trim() || "";
     console.log(`pretty-var-export ${fromLine}`);
@@ -997,9 +997,12 @@ function log(...args) {
       process.stdout.write(pretty(value) + "\n");
     });
   }
-}
+};
+pretty.colors = colors_default;
+pretty.handlers = handlers_default;
+pretty.labels = labels_default;
+pretty.options = options_default;
+var pretty_var_export_default = pretty;
 export {
-  colors_default as colors,
-  pretty as default,
-  log
+  pretty_var_export_default as default
 };

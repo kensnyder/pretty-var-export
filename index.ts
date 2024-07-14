@@ -1,10 +1,10 @@
-export { default as colors } from './src/colors/colors';
-import { default as handlers } from './src/handlers/handlers';
-import { default as indent } from './src/indent/indent';
-import { default as labels } from './src/labels/labels';
-import { default as options } from './src/options/options';
+import colors from './src/colors/colors';
+import handlers from './src/handlers/handlers';
+import indent from './src/indent/indent';
+import labels from './src/labels/labels';
+import options from './src/options/options';
 
-export default function pretty(value: unknown) {
+const pretty = (value: unknown) => {
 	const objectsSeen = new Set();
 	return walk(value, 0);
 	function walk(value: unknown, level: number) {
@@ -20,12 +20,12 @@ export default function pretty(value: unknown) {
 			}
 		}
 	}
-}
+};
 
 /**
  * Log given values to stdout with a stacktrace label
  */
-export function log(...args: any[]) {
+pretty.log = (...args: any[]) => {
 	try {
 		const fromLine = new Error().stack?.split('\n')[2].trim() || '';
 		console.log(`pretty-var-export ${fromLine}`);
@@ -37,4 +37,9 @@ export function log(...args: any[]) {
 			process.stdout.write(pretty(value) + '\n');
 		});
 	}
-}
+};
+pretty.colors = colors;
+pretty.handlers = handlers;
+pretty.labels = labels;
+pretty.options = options;
+export default pretty;

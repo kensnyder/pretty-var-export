@@ -530,9 +530,7 @@ var require_jsesc = __commonJS({
 // index.ts
 var pretty_var_export_exports = {};
 __export(pretty_var_export_exports, {
-  colors: () => colors_default,
-  default: () => pretty,
-  log: () => log
+  default: () => pretty_var_export_default
 });
 module.exports = __toCommonJS(pretty_var_export_exports);
 
@@ -982,7 +980,7 @@ indent.toSpaces = function(str) {
 };
 
 // index.ts
-function pretty(value) {
+var pretty = (value) => {
   const objectsSeen = /* @__PURE__ */ new Set();
   return walk(value, 0);
   function walk(value2, level) {
@@ -998,8 +996,8 @@ function pretty(value) {
       }
     }
   }
-}
-function log(...args) {
+};
+pretty.log = (...args) => {
   try {
     const fromLine = new Error().stack?.split("\n")[2].trim() || "";
     console.log(`pretty-var-export ${fromLine}`);
@@ -1012,9 +1010,9 @@ function log(...args) {
       process.stdout.write(pretty(value) + "\n");
     });
   }
-}
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  colors,
-  log
-});
+};
+pretty.colors = colors_default;
+pretty.handlers = handlers_default;
+pretty.labels = labels_default;
+pretty.options = options_default;
+var pretty_var_export_default = pretty;

@@ -1,3 +1,7 @@
+declare module 'src/types' {
+	export type Formatter = (value: any, level?: number, seen?: Set<unknown>, indent?: (level: number) => string, walk?: Formatter) => string;
+
+}
 declare module 'src/colors/colors' {
 	import * as c from 'ansi-colors'; const colors: {
 	    reset: () => any & {
@@ -31,6 +35,10 @@ declare module 'src/colors/colors' {
 	    unstyle: typeof c.unstyle;
 	};
 	export default colors;
+
+}
+declare module 'src/colors/colors.spec' {
+	export {};
 
 }
 declare module 'src/handlers/null/nullHandler' {
@@ -205,10 +213,6 @@ declare module 'src/handlers/Map/MapHandler' {
 	export default MapHandler;
 
 }
-declare module 'src/types' {
-	export type Formatter = (value: any, level?: number, seen?: Set<unknown>, indent?: (level: number) => string, walk?: Formatter) => string;
-
-}
 declare module 'src/handlers/Set/SetHandler' {
 	import { Formatter } from 'src/types'; const SetHandler: {
 	    test: (value: unknown) => value is Set<any>;
@@ -274,36 +278,16 @@ declare module 'src/handlers/handlers' {
 	export default handlers;
 
 }
+declare module 'src/handlers/handlers.spec' {
+	export {};
+
+}
 declare module 'src/indent/indent' {
 	 function indent(level: number): string; namespace indent {
 	    var removeAll: (str: string) => string;
 	    var toSpaces: (str: string) => string;
 	}
 	export default indent;
-
-}
-declare module 'index' {
-	export { default as colors } from 'src/colors/colors';
-	export default function pretty(value: unknown): string | undefined;
-	/**
-	 * Log given values to stdout with a stacktrace label
-	 */
-	export function log(...args: any[]): void;
-
-}
-declare module 'vitest.config' {
-	 const _default: import("vite").UserConfig;
-	export default _default;
-
-}
-declare function jumpToCode(event: any): void;
-//# sourceMappingURL=block-navigation.d.ts.map//# sourceMappingURL=prettify.d.ts.mapdeclare function addSorting(): void;
-//# sourceMappingURL=sorter.d.ts.mapdeclare module 'src/colors/colors.spec' {
-	export {};
-
-}
-declare module 'src/handlers/handlers.spec' {
-	export {};
 
 }
 declare module 'src/handlers/Array/ArrayHandler.spec' {
@@ -404,5 +388,87 @@ declare module 'src/indent/indent.spec' {
 }
 declare module 'src/options/options.spec' {
 	export {};
+
+}
+declare module 'index' {
+	 const pretty: {
+	    (value: unknown): string | undefined;
+	    /**
+	     * Log given values to stdout with a stacktrace label
+	     */
+	    log(...args: any[]): void;
+	    colors: {
+	        reset: () => any & {
+	            boolean: import("ansi-colors").StyleFunction;
+	            comment: import("ansi-colors").StyleFunction;
+	            constructor: import("ansi-colors").StyleFunction;
+	            escape: import("ansi-colors").StyleFunction;
+	            null: import("ansi-colors").StyleFunction;
+	            number: import("ansi-colors").StyleFunction;
+	            property: import("ansi-colors").StyleFunction;
+	            regexp: import("ansi-colors").StyleFunction;
+	            string: import("ansi-colors").StyleFunction;
+	            symbol: import("ansi-colors").StyleFunction;
+	            undefined: import("ansi-colors").StyleFunction;
+	            palette: typeof import("ansi-colors");
+	            unstyle: typeof import("ansi-colors").unstyle;
+	        };
+	        disable: () => void;
+	        boolean: import("ansi-colors").StyleFunction;
+	        comment: import("ansi-colors").StyleFunction;
+	        constructor: import("ansi-colors").StyleFunction;
+	        escape: import("ansi-colors").StyleFunction;
+	        null: import("ansi-colors").StyleFunction;
+	        number: import("ansi-colors").StyleFunction;
+	        property: import("ansi-colors").StyleFunction;
+	        regexp: import("ansi-colors").StyleFunction;
+	        string: import("ansi-colors").StyleFunction;
+	        symbol: import("ansi-colors").StyleFunction;
+	        undefined: import("ansi-colors").StyleFunction;
+	        palette: typeof import("ansi-colors");
+	        unstyle: typeof import("ansi-colors").unstyle;
+	    };
+	    handlers: {
+	        add(name: string, handler: {
+	            test: (value: unknown) => boolean;
+	            format: import("./src/types").Formatter;
+	        }): any;
+	        remove(name: string): any;
+	        reset(): any;
+	        list(): {
+	            test: (value: unknown) => boolean;
+	            format: (...args: any[]) => string;
+	        }[];
+	    };
+	    labels: {
+	        reset: () => any & {
+	            circularReference: string;
+	            codeOmitted: string;
+	            itemsUnknown: string;
+	        };
+	        circularReference: string;
+	        codeOmitted: string;
+	        itemsUnknown: string;
+	    };
+	    options: {
+	        reset: () => any & {
+	            showFunctionBody: boolean;
+	            maxStringLength: number;
+	            maxListItems: number;
+	            preferBackticks: boolean;
+	            quoteStyle: string;
+	            _indentChars: string;
+	        };
+	        get indent(): string;
+	        set indent(numOrCharacters: number | string);
+	        showFunctionBody: boolean;
+	        maxStringLength: number;
+	        maxListItems: number;
+	        preferBackticks: boolean;
+	        quoteStyle: string;
+	        _indentChars: string;
+	    };
+	};
+	export default pretty;
 
 }
