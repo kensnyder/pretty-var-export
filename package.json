@@ -1,15 +1,28 @@
 {
 	"name": "pretty-var-export",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Export any value to valid and equivalent JavaScript code",
-	"main": "index.ts",
 	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"sideEffects": false,
 	"scripts": {
 		"test": "npx vitest",
 		"test-watch": "npx vitest",
 		"coverage": "npx vitest --collectCoverage",
 		"demo": "node demo/example.js",
-		"build": "rm index.d.ts; dts-generator --project . --out index.d.ts"
+		"build": "npm run build:dts && npm run build:esm && npm run build:cjs",
+		"build:dts": "rm dist/index.d.ts; npx dts-generator --project . --out dist/index.d.ts",
+		"build:esm": "npx esbuild index.ts --bundle --platform=node --format=esm --outfile=dist/index.mjs",
+		"build:cjs": "npx esbuild index.ts --bundle --platform=node --format=cjs --outfile=dist/index.cjs"
 	},
 	"repository": {
 		"type": "git",

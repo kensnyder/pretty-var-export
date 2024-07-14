@@ -1,4 +1,4 @@
-const pretty = require('../index.ts');
+const pretty = require('../dist/index.cjs');
 
 const value = {
 	aNumber: 1,

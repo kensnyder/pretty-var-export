@@ -283,82 +283,12 @@ declare module 'src/indent/indent' {
 
 }
 declare module 'index' {
-	 function pretty(value: unknown): string | undefined; namespace pretty {
-	    var log: (...args: any[]) => void;
-	    var colors: {
-	        reset: () => any & {
-	            boolean: import("ansi-colors").StyleFunction;
-	            comment: import("ansi-colors").StyleFunction;
-	            constructor: import("ansi-colors").StyleFunction;
-	            escape: import("ansi-colors").StyleFunction;
-	            null: import("ansi-colors").StyleFunction;
-	            number: import("ansi-colors").StyleFunction;
-	            property: import("ansi-colors").StyleFunction;
-	            regexp: import("ansi-colors").StyleFunction;
-	            string: import("ansi-colors").StyleFunction;
-	            symbol: import("ansi-colors").StyleFunction;
-	            undefined: import("ansi-colors").StyleFunction;
-	            palette: typeof import("ansi-colors");
-	            unstyle: typeof import("ansi-colors").unstyle;
-	        };
-	        disable: () => void;
-	        boolean: import("ansi-colors").StyleFunction;
-	        comment: import("ansi-colors").StyleFunction;
-	        constructor: import("ansi-colors").StyleFunction;
-	        escape: import("ansi-colors").StyleFunction;
-	        null: import("ansi-colors").StyleFunction;
-	        number: import("ansi-colors").StyleFunction;
-	        property: import("ansi-colors").StyleFunction;
-	        regexp: import("ansi-colors").StyleFunction;
-	        string: import("ansi-colors").StyleFunction;
-	        symbol: import("ansi-colors").StyleFunction;
-	        undefined: import("ansi-colors").StyleFunction;
-	        palette: typeof import("ansi-colors");
-	        unstyle: typeof import("ansi-colors").unstyle;
-	    };
-	    var handlers: {
-	        add(name: string, handler: {
-	            test: (value: unknown) => boolean;
-	            format: import("./src/types").Formatter;
-	        }): any;
-	        remove(name: string): any;
-	        reset(): any;
-	        list(): {
-	            test: (value: unknown) => boolean;
-	            format: (...args: any[]) => string;
-	        }[];
-	    };
-	    var indent: typeof import("./src/indent/indent").default;
-	    var labels: {
-	        reset: () => any & {
-	            circularReference: string;
-	            codeOmitted: string;
-	            itemsUnknown: string;
-	        };
-	        circularReference: string;
-	        codeOmitted: string;
-	        itemsUnknown: string;
-	    };
-	    var options: {
-	        reset: () => any & {
-	            showFunctionBody: boolean;
-	            maxStringLength: number;
-	            maxListItems: number;
-	            preferBackticks: boolean;
-	            quoteStyle: string;
-	            _indentChars: string;
-	        };
-	        get indent(): string;
-	        set indent(numOrCharacters: number | string);
-	        showFunctionBody: boolean;
-	        maxStringLength: number;
-	        maxListItems: number;
-	        preferBackticks: boolean;
-	        quoteStyle: string;
-	        _indentChars: string;
-	    };
-	}
-	export default pretty;
+	export { default as colors } from 'src/colors/colors';
+	export default function pretty(value: unknown): string | undefined;
+	/**
+	 * Log given values to stdout with a stacktrace label
+	 */
+	export function log(...args: any[]): void;
 
 }
 declare module 'vitest.config' {
@@ -368,11 +298,7 @@ declare module 'vitest.config' {
 }
 declare function jumpToCode(event: any): void;
 //# sourceMappingURL=block-navigation.d.ts.map//# sourceMappingURL=prettify.d.ts.mapdeclare function addSorting(): void;
-//# sourceMappingURL=sorter.d.ts.mapdeclare module 'demo/example' {
-	export {};
-	//# sourceMappingURL=example.d.ts.map
-}
-declare module 'src/colors/colors.spec' {
+//# sourceMappingURL=sorter.d.ts.mapdeclare module 'src/colors/colors.spec' {
 	export {};
 
 }

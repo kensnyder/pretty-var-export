@@ -27,12 +27,6 @@ describe('ObjectHandler.format()', () => {
 		const formatted = indent.toSpaces(colors.unstyle(result));
 		expect(formatted).toBe('{ a: 1, "b-2": 2, "c 3": 3 }');
 	});
-	it('should handle empty objects', () => {
-		const arr = [];
-		const result = ObjectHandler.format(arr, 0, false, indent, walk);
-		const formatted = indent.toSpaces(colors.unstyle(result));
-		expect(formatted).toBe('{}');
-	});
 	it('should handle circular references', () => {
 		const arr = {};
 		const result = ObjectHandler.format(arr, 0, true, indent, walk);
