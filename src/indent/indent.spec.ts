@@ -1,5 +1,5 @@
-import indent from './indent.ts';
-import options from '../options/options.ts';
+import indent from './indent';
+import options from '../options/options';
 
 describe('indent()', () => {
 	it('should return empty string for level 0', () => {

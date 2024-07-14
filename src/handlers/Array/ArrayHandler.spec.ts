@@ -1,7 +1,7 @@
-import colors from '../../colors/colors.ts';
-import indent from '../../indent/indent.ts';
-import options from '../../options/options.ts';
-import ArrayHandler from './ArrayHandler.ts';
+import colors from '../../colors/colors';
+import indent from '../../indent/indent';
+import options from '../../options/options';
+import ArrayHandler from './ArrayHandler';
 
 describe('ArrayHandler.test()', () => {
 	it('should recognize empty array', () => {

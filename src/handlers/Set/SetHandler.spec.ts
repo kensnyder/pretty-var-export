@@ -1,6 +1,6 @@
-import colors from '../../colors/colors.ts';
-import indent from '../../indent/indent.ts';
-import SetHandler from './SetHandler.ts';
+import colors from '../../colors/colors';
+import indent from '../../indent/indent';
+import SetHandler from './SetHandler';
 
 describe('SetHandler.test()', () => {
 	it('should recognize empty sets', () => {

@@ -1,5 +1,5 @@
-import colors from '../../colors/colors.ts';
-import DateHandler from './DateHandler.ts';
+import colors from '../../colors/colors';
+import DateHandler from './DateHandler';
 
 describe('DateHandler.test()', () => {
 	it('should recognize dates', () => {

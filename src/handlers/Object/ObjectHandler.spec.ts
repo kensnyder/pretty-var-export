@@ -1,6 +1,6 @@
-import colors from '../../colors/colors.ts';
-import indent from '../../indent/indent.ts';
-import ObjectHandler from './ObjectHandler.ts';
+import colors from '../../colors/colors';
+import indent from '../../indent/indent';
+import ObjectHandler from './ObjectHandler';
 
 describe('ObjectHandler.test()', () => {
 	it('should recognize empty object', () => {
